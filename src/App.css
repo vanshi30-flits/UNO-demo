@@ -1,0 +1,43 @@
+
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App{
+  /* display: flex; */
+  height: 100vh;
+  border: 5px solid red;
+  padding: 20px;
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* gap: 1; */
+}
+h1{
+  display: block;
+  
+}
+.App-container{
+ display: flex;
+ justify-content: space-around;
+ align-items: center; 
+}
+.left-nav-div, .routes-div{
+  border: 7px solid yellowgreen;
+}
+
+/* .App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+} */
+
+

@@ -1,0 +1,390 @@
+/* ISSUEs IN TWO CLASSES: credits-list-content-item, credits-list-inner-heading-inner-container2 */
+:root {
+    --borderColor: rgb(142, 142, 142);
+    --contentTextColor: rgb(0, 0, 0);
+    --contentBGColor: rgb(225, 225, 225, 0);
+}
+
+/* *:focus-visible{
+    outline: .2rem solid rgba(var(--color-foreground));
+    outline-offset: .3rem;
+    box-shadow: 0 0 0 .3rem rgb(var(--color-background)),0 0 .5rem .4rem rgba(var(--color-foreground), .3);
+} */
+.credits-outermost-container {
+    color: var(--contentTextColor);
+    background: var(--contentBGColor);
+    float: right;
+    width: calc(100% - 242px);
+    transition: left .3s, opacity .3s;
+    /* margin-left: 242px; */
+}
+
+.credits-outermost-container2 {
+    width: 100%;
+    position: relative;
+}
+
+.credits-outermost-container3 {
+    height: 100%;
+    width: 100%;
+}
+
+.credits-wrapper {
+    height: 100%;
+    padding: 0 10px;
+}
+
+
+.credits-info-outermost-container {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.credits-info-inner-container {
+    padding-left: 15px;
+    padding-right: 15px;
+    min-height: 1px;
+    position: relative;
+}
+
+.credits-info-inner-container-float {
+    float: left;
+    width: 33.33%;
+}
+
+.credits-info-inner-container-align {
+    text-align: center;
+}
+
+.credits-info-inner-container-margin {
+    margin-bottom: 10px !important;
+}
+
+.credits-info-innermost-container {
+    border: 1px solid;
+    border-color: var(--borderColor);
+    border-radius: 5px;
+    padding: 15px;
+    position: relative;
+}
+
+.credits-list-container {
+    border: 1px solid;
+    border-color: var(--borderColor);
+    padding: 15px;
+    position: relative;
+    border-radius: 5px;
+}
+
+.credits-list-inner-container {
+    height: 100%;
+}
+
+.credits-list-heading {
+    border-bottom: 1px solid;
+    border-color: var(--borderColor);
+    color: var(--contentTextColor);
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0 0 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.credits-list-heading2 {
+    margin-bottom: 0 !important;
+}
+
+.credits-list-heading3 {
+    line-height: 1.2;
+    font-family: inherit;
+}
+
+.credits-list-inner-heading {
+
+    box-shadow: 0 7px 5px -3px #cccccc52;
+    height: auto;
+    min-height: auto;
+    overflow: hidden;
+}
+
+.credits-list-inner-heading2 {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.credits-list-content-container {
+    height: calc(100% - 80px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.credits-list-inner-heading-inner-container {
+    display: block;
+    font-weight: 700;
+}
+
+.credits-list-inner-heading-inner-container2 {
+    background: 0 0;
+    border-bottom: 1px solid;
+    border-color: var(--borderColor);
+    list-style: none;
+    margin-bottom: -1px;
+    position: relative;
+    padding: 10px 15px;
+    /* height not specified in uno app */
+    height: 40px;
+
+}
+
+.credits-list-innermost-inner-heading-container {
+    margin-left: -15px;
+    margin-right: -15px;
+
+}
+
+.credits-inner-heading-para,
+.credits-info-innermost-container-para {
+    color: var(--contentTextColor) !important;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.credits-heading-div {
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+}
+
+.credits-heading-div2 {
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+}
+
+/* .credits-heading-div-float-25 {
+    float: left;
+    width: 25%;
+} */
+
+/* .credits-heading-div-float-50 {
+    float: left;
+    width: 50%;
+} */
+
+.credits-heading-div-border {
+    border-right: 1px solid;
+    border-color: var(--borderColor);
+}
+
+.credits-heading-div-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.credits-heading-div-center {
+    text-align: center;
+}
+
+.credits-para,
+.credits-list-content-para {
+    color: var(--contentTextColor);
+    margin: 0;
+    word-break: break-all;
+}
+
+.credits-list-content-item {
+    background: 0 0;
+    border-bottom: 1px solid;
+    border-color: var(--borderColor);
+    display: block;
+    list-style: none;
+    margin-bottom: -1px;
+    padding: 10px 15px;
+    position: relative;
+    /* no height specified in uno */
+    height: 40px;
+}
+
+.credits-list-content-outer-div {
+    margin-left: -15px;
+    margin-right: -15px;
+
+}
+
+/* .credits-list-content-25-float {
+    float: left;
+    width: 25%;
+} */
+
+/* .credits-list-content-50-float {
+    float: left;
+    width: 50%;
+} */
+
+.credits-list-content-border {
+    border-right: 1px solid;
+    border-color: var(--borderColor);
+}
+
+.credits-list-content-padding {
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+}
+
+.credits-list-content-padding2 {
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+}
+
+.credits-list-content-center {
+    text-align: center;
+}
+
+.credits-list-content-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.credits-list-content-symbol-Rs-outer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.credits-list-content-symbol-Rs-inner-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.credits-list-content-symbol-Rs-outer-container-line-height {
+
+    line-height: 0;
+}
+
+.credits-list-plus-icon {
+    color: green;
+    height: 18px;
+    width: 18px;
+    margin-right: 12px;
+}
+
+.credits-list-minus-icon {
+    color: red;
+    height: 18px;
+    width: 18px;
+    margin-right: 12px;
+}
+
+.this {
+    height: 90px;
+}
+
+.cus-para {
+    color: var(--contentTextColor);
+    margin: 0;
+}
+
+/* ----------------------------- */
+
+@media screen and (max-width: 768px) {
+    .credits-info-inner-container-float {
+        float: left;
+        width: 100%;
+    }
+
+    /* did manually not placed in uno */
+    .credits-list-container {
+        margin-top: 180px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+
+    .credits-outermost-container {
+        /*margin-left:0,height:auto "I added"  */
+        /* margin-left: 0; */
+        /* height: auto; */
+
+        display: block;
+        float: none !important;
+        position: relative;
+        left: 0;
+        opacity: 1;
+        width: 100% !important;
+
+    }
+
+    .credits-wrapper {
+        padding: 10px;
+    }
+
+    /* .this{
+    height: auto;
+} */
+    .credits-heading-div-border {
+        border-right: 0 !important;
+    }
+
+    .credits-inner-heading-para {
+        text-align: left;
+        white-space: pre-wrap;
+    }
+
+    /* true */
+    .cus-para {
+        text-align: left;
+        white-space: pre-wrap;
+    }
+
+    .credits-list-content-border {
+        border-right: 0 !important;
+    }
+
+
+    .credits-list-inner-heading-inner-container2 {
+        height: 90px;
+
+        /* line-height added myself not in uno */
+        line-height: 1.5;
+    }
+
+    .credits-list-content-item {
+        height: 90px;
+        /* line-height added myself not in uno */
+        line-height: 1.5;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .credits-heading-div {
+        width: 25%;
+        float: left;
+    }
+
+    .credits-heading-div2 {
+        width: 50%;
+        float: left;
+    }
+
+    .credits-list-content-padding {
+        width: 25%;
+        float: left;
+    }
+
+    .credits-list-content-padding2 {
+        width: 50%;
+        float: left;
+    }
+}

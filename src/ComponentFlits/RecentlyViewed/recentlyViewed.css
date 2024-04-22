@@ -1,0 +1,53 @@
+:root {
+    --contentTextColor: rgb(0, 0, 0);
+    --contentBGColor: rgb(225, 225, 225, 0);
+}
+
+.viewed-outermost-container {
+    background-color: var(--contentBGColor);
+    color: var(--contentTextColor);
+    float: right;
+    width: calc(100% - 242px);
+    transition: left .3s opacity .3s;
+}
+
+.viewed-outermost-container2 {
+    width: 100%;
+    position: relative;
+}
+
+.viewed-outermost-container3 {
+    height: 100%;
+    width: 100%;
+}
+
+.viewed-wrapper {
+    height: 100%;
+    padding: 0 10px;
+}
+
+
+/* -------------------------- */
+@media screen and (max-width: 992px) {
+    .viewed-wrapper {
+        padding: 10px;
+    }
+
+    .wishlist-list-container {
+        justify-content: center;
+    }
+
+    .viewed-outermost-container {
+        /*margin-left:0,height:auto "I added"  */
+        margin-left: 0;
+        /* height: auto; */
+
+        display: block;
+        float: none !important;
+        position: relative;
+        left: 0;
+        opacity: 1;
+        width: 100% !important;
+
+    }
+}

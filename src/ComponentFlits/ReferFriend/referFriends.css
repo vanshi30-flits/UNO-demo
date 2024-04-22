@@ -1,0 +1,419 @@
+/*ISSUE IN CLASS: friends-first-container-inner-div */
+/* media query last class i wrote myself not in uno */
+:root {
+    --contentTextColor: rgb(0, 0, 0);
+    --contentBGColor: rgb(225, 225, 225, 0);
+    --borderColor: rgb(142, 142, 142);
+    --primaryButtonBGColor: rgb(32, 2, 100);
+    --primaryButtonTextColor: rgb(255, 255, 255);
+    --facebookBGColor: rgb(59, 80, 152);
+    --facebookTextColor: rgb(255, 255, 255);
+    --whatsappBGColor: rgb(18, 140, 126);
+    --whatsappTextColor: rgb(255, 255, 255);
+    --color-background:255,255,255;
+    --color-foreground: 18,18,18;
+}
+/* *:focus-visible{
+    outline: .2rem solid rgba(var(--color-foreground));
+    outline-offset: .3rem;
+    box-shadow: 0 0 0 .3rem rgb(var(--color-background)),0 0 .5rem .4rem rgba(var(--color-foreground), .3);
+} */
+.friends-outermost-container {
+    background-color: var(--contentBGColor);
+    color: var(--contentTextColor);
+    float: right;
+    transition: left .3s, opacity .3s;
+    width: calc(100% - 242px);
+
+
+    /* was firstly placed in inline style in jsx file of referFriends */
+    height: 506px;
+}
+
+.friends-outermost-container2 {
+    width: 100%;
+    position: relative;
+}
+
+.friends-outermost-container3 {
+    width: 100%;
+    height: 100%;
+}
+
+.friends-wrapper {
+    height: 100%;
+    padding: 0 10px;
+}
+
+.friends-first-container {
+    position: relative;
+    padding: 15px;
+    border: 1px solid;
+    border-color: var(--borderColor);
+    border-radius: 5px;
+    /* background-color: yellow; */
+
+}
+
+.friends-first-container-margin {
+    margin-bottom: 15px !important;
+}
+
+.friends-first-container-para {
+    line-height: 1.2;
+    font-weight: 500;
+    font-size: 1.75rem;
+    font-family: inherit;
+}
+
+.friends-first-container-para-margin {
+    margin-bottom: 15px !important;
+}
+
+.friends-first-container-para-color {
+    color: var(--contentTextColor);
+    margin: 0;
+}
+
+.friends-first-container-para-align {
+    text-align: center;
+}
+
+.friends-first-container-inner-div {
+    /* background-color: red; */
+    /* border: 2px solid red; */
+
+
+    /* written to set height [height was not set mannually in uno ] */
+    height: 98px;
+    /* height: 0;
+    min-height: 100%; */
+    margin-left: -15px !important;
+    margin-right: -15px !important;
+}
+
+.friends-first-container-innermost-div {
+    min-height: 1px;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    position: relative;
+}
+
+.friends-first-container-innermost-div-margin {
+    margin-bottom: 5px !important;
+}
+
+.friends-first-container-innermost-div-align {
+    text-align: center;
+}
+
+/* .friends-first-container-innermost-div-float {
+    float: left;
+    width: 33.33%;
+} */
+
+.friends-first-container-img {
+    width: 25%;
+    max-width: 100%;
+    max-height: 100%;
+    border: 0;
+}
+
+.friends-first-container-innermost-para {
+    margin: 0;
+    color: var(--contentTextColor);
+}
+
+.friends-second-outermost-container {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.friends-second-outer-container {
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+}
+
+.friends-second-outer-container-margin {
+    margin-bottom: 15px !important;
+}
+
+.friends-second-inner-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 0;
+}
+
+.friends-second-innermost-container {
+    position: relative;
+    width: 100%;
+}
+
+.friends-second-innermost-container2 {
+    position: relative;
+}
+
+.friends-input-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid;
+    border-color: var(--borderColor);
+    border-radius: 7px;
+    cursor: text;
+    font-size: 16px;
+    font-size: normal;
+    font-weight: 400;
+    height: 45px !important;
+    line-height: 1.2 !important;
+    margin: 0 !important;
+    outline: 0;
+    padding: 8px 90px 8px 8px !important;
+    transition: all .3s ease;
+    vertical-align: initial;
+    width: 100%;
+    text-align: left;
+    position: relative;
+}
+.friends-input-link:focus-visible{
+    outline-offset: .3rem;
+    box-shadow: 0 0 0 .3rem rgb(var(--color-background)),0 0 .5rem .4rem rgba(var(--color-foreground), .3);
+}
+
+.friends-copy-btn {
+    cursor: pointer;
+    border-radius: 5px;
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 14px;
+    margin: 0 0 0 3.5px;
+    min-height: 14px;
+    outline: 0;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: none;
+    text-transform: none;
+    transition: all .3s;
+    user-select: none;
+    vertical-align: initial;
+}
+
+.friends-copy-btn-margin {
+    margin-left: 0 !important;
+}
+
+.friends-copy-btn-position {
+    position: absolute;
+    top: 5px;
+    right: 3px;
+}
+
+.friends-copy-btn-color {
+    background: var(--primaryButtonBGColor);
+    border: 1px solid var(--primaryButtonBGColor);
+    color: var(--primaryButtonTextColor);
+}
+
+.friends-share-btn {
+    border-radius: 5px;
+    text-align: center;
+    outline: 0;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    text-shadow: none;
+    text-transform: none;
+    transition: all .3s;
+    user-select: none;
+    vertical-align: initial;
+    font-size: 14px;
+    font-style: normal;
+    min-height: 14px;
+    line-height: 14px;
+    font-weight: 700;
+    margin: 0 0 0 3.5px !important;
+}
+
+.friends-share-btn-position {
+    position: relative;
+    padding: 10px 20px 10px 35px !important;
+}
+
+.friends-share-btn-facebook-color {
+    background: var(--facebookBGColor);
+    border: 1px solid var(--facebookBGColor);
+    color: var(--facebookTextColor);
+}
+
+.friends-share-btn-whatsapp-color {
+    background: var(--whatsappBGColor);
+    border: 1px solid var(--whatsappBGColor);
+    color: var(--whatsappTextColor);
+}
+
+.friends-social-icon-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: 8px;
+    line-height: 1;
+    text-align: center;
+    width: 35px;
+    border-radius: 0;
+    border-top-left-radius: inherit;
+    border-bottom-left-radius: inherit;
+}
+.friends-third-container{
+    border: 1px solid;
+    border-color: var(--borderColor);
+    border-radius: 5px;
+    padding: 15px;
+    position: relative;
+}
+.friends-third-inner-container{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.friends-third-inner-container-position{
+    position: relative;
+}
+.friends-third-container-para{
+    color: var(--contentTextColor)!important;
+    margin: 0;
+    font-size: 16px;
+    text-align: center;
+}
+
+
+.friends-view-products-btn {
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 14px;
+    margin: 0 0 0 3.5px;
+    min-height: 14px;
+    outline: 0;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: none;
+    text-transform: none;
+    transition: all .3s;
+    user-select: none;
+    vertical-align: initial;
+}
+.friends-view-products-btn-color{
+background: var(--primaryButtonBGColor);
+border: 1px solid var(--primaryButtonBGColor);
+color: var(--primaryButtonTextColor);
+}
+.friends-view-products-btn-margin-left{
+    margin-left: 0;
+}
+.friends-view-products-btn-margin-top{
+    margin-top: 10px !important;
+}
+
+
+
+/* -------------------------- */
+@media screen and (max-width:768px) {
+    .friends-second-inner-container {
+        flex-wrap: wrap;
+    }
+    .friends-second-innermost-container2 {
+        margin-bottom: 15px;
+    }
+}
+@media screen and (max-width: 992px) {
+    .friends-wrapper {
+        padding: 10px;
+    }
+    .friends-first-container-innermost-div-align{
+        width: 100%;
+        float: left;
+        text-align: center;
+    } 
+    /* .friends-second-inner-container {
+        flex-wrap: wrap;
+    } */
+
+    /* .friends-second-innermost-container2 {
+        margin-bottom: 15px;
+    } */
+
+
+    /* i added myself not in uno */
+    .friends-first-container-margin {
+        height: 360px;
+    }
+    .friends-first-container-img {
+        width: 60px;
+    }
+
+
+    /* I WROTE MYSELF NOT MENTIONED IN UNO   */
+    /* .friends-first-container-inner-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1;
+        height: auto;
+    } */
+    
+    /* i manually added not in uno */
+    .friends-outermost-container {
+         /*margin-left:0,height:auto "I added"  */
+         /* margin-left: 0; */
+         /* height: auto; */
+ 
+         display: block;
+         float: none !important;
+         position: relative;
+         left: 0;
+         opacity: 1;
+         width: 100% !important;
+    }
+}
+@media screen and (min-width: 992px){
+    .friends-first-container-innermost-div-float{
+        float: left;
+        width: 33.33%;
+        /* background-color: green; */
+    }
+    
+}
+
+@media screen and (min-width:1200px) {
+    .friends-first-container-innermost-div-float{
+        float: left;
+        width: 33.33%;
+        /* background-color: red; */
+    }
+    .friends-outermost-container{
+        height: 523px;
+    }
+}
