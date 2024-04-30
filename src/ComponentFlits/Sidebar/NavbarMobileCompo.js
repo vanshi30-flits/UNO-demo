@@ -2,6 +2,7 @@ import React from 'react';
 import './navbar.css';
 
 const NavbarMobileCompo = ({ClickedMe,navTitle}) => {
+  
   return (
     <>
       <div className='back-btn-wrapper'>
@@ -10,9 +11,29 @@ const NavbarMobileCompo = ({ClickedMe,navTitle}) => {
           Back
         </button>
         <span className='nav-name'>{navTitle}</span>
+        
       </div>
     </>
   )
 }
 
 export default NavbarMobileCompo
+
+
+// const NavbarMobileCompo = () => {
+  
+//   return (
+//     <>
+//       <div className='back-btn-wrapper'>
+//         <button className='back-btn-inner'>
+//           <i className="fa-regular fa-circle-left nav-back-icon"></i>
+//           Back
+//         </button>
+//         <span className='nav-name'>nav</span>
+        
+//       </div>
+//     </>
+//   )
+// }
+
+// export default NavbarMobileCompo

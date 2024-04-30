@@ -338,6 +338,10 @@ color: var(--primaryButtonTextColor);
 
 
 
+.not-visible-friends {
+    opacity: 0 !important;
+    display: none !important;
+}
 /* -------------------------- */
 @media screen and (max-width:768px) {
     .friends-second-inner-container {
@@ -396,6 +400,10 @@ color: var(--primaryButtonTextColor);
          left: 0;
          opacity: 1;
          width: 100% !important;
+    }
+
+    .not-visible-friends {
+     position: absolute;
     }
 }
 @media screen and (min-width: 992px){

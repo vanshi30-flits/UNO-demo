@@ -296,6 +296,11 @@
     background: var(--primaryButtonBGColor);
     color: var(--primaryButtonTextColor);
 }
+.wishlist-item-cross-btn:hover{
+    background: var(--primaryButtonHoverBGColor);
+    border: 1px solid var(--primaryButtonHoverBGColor);
+    color: var(--primaryButtonTextColor) !important;
+}
 
 .wishlist-item-cross-btn1 {
     position: absolute;
@@ -309,7 +314,7 @@
 
     /* here */
 
-    /* display: none; */
+    display: none;
 }
 
 
@@ -331,10 +336,15 @@
 }
 
 
+.wishlist-item-cross-btn1-display{
+    display: block;
+}
 
 
-
-
+.not-visible-wishlist{
+    opacity: 0 !important;
+    display: none !important;
+}
 
 
 
@@ -366,5 +376,8 @@
         width: 100% !important;
 
 
+    }
+    .not-visible-wishlist{
+    position: absolute !important;
     }
 }

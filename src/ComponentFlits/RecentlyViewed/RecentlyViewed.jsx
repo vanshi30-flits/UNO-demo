@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './recentlyViewed.css';
 import RecentlyViewedItem from './RecentlyViewedItem';
-const RecentlyViewed = () => {
+import NavbarMobileCompo from '../Sidebar/NavbarMobileCompo';
+const RecentlyViewed = ({dataFromSidebar,dataFromRecentlyViewedCallback}) => {
+    const viewedOutermostContainer = document.getElementsByClassName('viewed-outermost-container');
+    const ClickedMe = (e) => {
+        e.preventDefault();
+    const viewedOutermostContainer = document.getElementsByClassName('viewed-outermost-container');
+        
+    
+        viewedOutermostContainer[0].classList.add('not-visible-viewed');
+        dataFromSidebar.classList.add('sidebar-main-mobile');
+      }
+      useEffect(()=>{
+        dataFromRecentlyViewedCallback(viewedOutermostContainer[0])
+      },[dataFromRecentlyViewedCallback])
     return (
         <>
-            <div className='viewed-outermost-container' style={{ height: '666px' }}>
-                <div className='viewed-outermost-container2' style={{ height: 'auto', minHeight: '666px' }}>
+            {/* <div className='viewed-outermost-container' style={{ height: '666px' }}>
+                <div className='viewed-outermost-container2' style={{ height: 'auto', minHeight: '666px' }}> */}
+                <div className='viewed-outermost-container' >
+                <div className='viewed-outermost-container2' >
                     <div className='viewed-outermost-container3'>
+                    <NavbarMobileCompo ClickedMe={ClickedMe} navTitle='Recently Viewed' />
                         <div className='viewed-wrapper'>
                             <div>
                                 <ul className='wishlist-list-container'>

@@ -296,6 +296,16 @@
     margin: 0;
 }
 
+.not-visible-credits {
+    opacity: 0 !important;
+    display: none !important;
+}
+
+
+
+
+
+
 /* ----------------------------- */
 
 @media screen and (max-width: 768px) {
@@ -364,6 +374,9 @@
         height: 90px;
         /* line-height added myself not in uno */
         line-height: 1.5;
+    }
+    .not-visible-credits {
+     position: absolute;
     }
 }
 

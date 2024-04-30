@@ -26,6 +26,10 @@
     padding: 0 10px;
 }
 
+.not-visible-viewed {
+    opacity: 0 !important;
+    display: none !important;
+}
 
 /* -------------------------- */
 @media screen and (max-width: 992px) {
@@ -49,5 +53,9 @@
         opacity: 1;
         width: 100% !important;
 
+    }
+
+    .not-visible-viewed {
+        position: absolute !important;
     }
 }

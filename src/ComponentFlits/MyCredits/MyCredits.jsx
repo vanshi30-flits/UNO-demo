@@ -1,16 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './myCredits.css';
 import Pagination from '../Pagination/Pagination';
 import CreditItem from './CreditItem';
 import NavbarMobileCompo from '../Sidebar/NavbarMobileCompo';
 
-const MyCredits = () => {
+const MyCredits = ({dataFromSidebar,dataFromCreditsCallback}) => {
+    const creditsOutermostContainer = document.getElementsByClassName('credits-outermost-container');
+    const [currentPage,setCurrentPage] = useState(1);
+    const [dataPerPage,setDataPerPage] = useState(7);
+    const [totalData,setTotalData]=useState([2,2,2,2,2,2,2,2,2,2]);
+    const ClickedMe = (e) => {
+        e.preventDefault();
+        
+        const creditsOutermostContainer = document.getElementsByClassName('credits-outermost-container');
+    
+        creditsOutermostContainer[0].classList.add('not-visible-credits');
+        dataFromSidebar.classList.add('sidebar-main-mobile');
+      }
+      useEffect(()=>{
+        dataFromCreditsCallback(creditsOutermostContainer[0])
+      },[])
+
+
+
+    //   const currentPage = 1;
+    // const dataPerPage = 7;
+    // const totalData = [2,2,2,2,2,2,2,2,2,2];
+
+
+    const indexOfLastData = currentPage * dataPerPage;
+    const indexOfFirstData = indexOfLastData - dataPerPage;
+    const currentPageData = totalData.slice(indexOfFirstData, indexOfLastData);
+
+    const handlePageNumberClick = (e) => {
+        e.preventDefault();
+        const currentPageRecieved = Number(e.target.id);
+        console.log("cc",currentPageRecieved);
+        setCurrentPage(currentPageRecieved);
+        // console.log("c",currentPage);
+    }
     return (
         <>
-            <div className='credits-outermost-container' style={{ height: '692px' }}>
-                <div className='credits-outermost-container2' style={{ height: 'auto', minHeight: '692px' }}>
+            {/* <div className='credits-outermost-container' style={{ height: '692px' }}>
+                <div className='credits-outermost-container2' style={{ height: 'auto', minHeight: '692px' }}> */}
+                <div className='credits-outermost-container' >
+                <div className='credits-outermost-container2' >
                     <div className='credits-outermost-container3'>
-                        <NavbarMobileCompo/>
+                    <NavbarMobileCompo ClickedMe={ClickedMe} navTitle='My Credits' />
                         <div className='credits-wrapper'>
                             {/* in below div I have manually added static height no height specifications in uno app     */}
                             <div style={{ height: '90px' }}>
@@ -56,8 +92,11 @@ const MyCredits = () => {
                                             </div>
                                         </li>
                                     </ul>
+
+
                                     <ul className='credits-list-content-container'>
-                                        <li className='credits-list-content-item'>
+                                    {/* --------------------------------------keep this below stuff ---------------------------*/}
+                                        {/* <li className='credits-list-content-item'>
                                             <div className='credits-list-content-outer-div'>
                                                 <div className='credits-list-content-25-float credits-list-content-border credits-list-content-padding credits-list-content-flex'>
 
@@ -72,12 +111,25 @@ const MyCredits = () => {
                                                 <div className='credits-list-content-50-float credits-list-content-border credits-list-content-padding2 credits-list-content-center'><p className='cus-para'>Loyal Customer</p></div>
                                                 <div className='credits-list-content-25-float credits-list-content-padding'>Mar 28,2024</div>
                                             </div>
-                                        </li>
+                                        </li> */}
+                                    {/* --------------------------------------keep this below stuff ---------------------------*/}
 
+                {currentPageData.map(dataItem=>{
+                    return (
+                        <>
+                        <CreditItem/>
+
+                        </>
+                    )
+                })}
+                                        {/* <CreditItem/>
                                         <CreditItem/>
-                                        <CreditItem/>
-                                        <CreditItem/>
-                                        <li className='credits-list-content-item'>
+                                        <CreditItem/> */}
+
+
+                                    {/* --------------------------------------keep this below stuff ---------------------------*/}
+
+                                        {/* <li className='credits-list-content-item'>
                                             <div className='credits-list-content-outer-div'>
                                                 <div className='credits-list-content-25-float credits-list-content-border credits-list-content-padding credits-list-content-flex'>
                                                     <div className='credits-list-content-symbol-Rs-outer-container'>
@@ -90,11 +142,13 @@ const MyCredits = () => {
                                                 <div className='credits-list-content-50-float credits-list-content-border credits-list-content-padding2 credits-list-content-center'><p className='cus-para'>Credits on order #1005- Expire</p></div>
                                                 <div className='credits-list-content-25-float credits-list-content-padding'>Mar 28,2024</div>
                                             </div>
-                                        </li>
+                                        </li> */}
+                                    {/* --------------------------------------keep this below stuff ---------------------------*/}
+
                                     </ul>
                                 </div>
                             </div>
-                            <Pagination />
+                            <Pagination totalData={totalData} currentPage={currentPage} dataPerPage={dataPerPage} handlePageNumberClick={handlePageNumberClick}/>
                         </div>
                     </div>
                 </div>

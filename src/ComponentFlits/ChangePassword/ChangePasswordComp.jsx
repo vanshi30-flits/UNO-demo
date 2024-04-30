@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './changepassword.css';
 import NavbarMobileCompo from '../Sidebar/NavbarMobileCompo';
 
-const ChangePasswordComp = () => {
+const ChangePasswordComp = ({dataFromSidebar,dataFromPasswordCallback}) => {
+  const passwordOutermostContainer = document.getElementsByClassName('password-outermost-container');
+  const ClickedMe = (e) => {
+      e.preventDefault();
+      
+      const passwordOutermostContainer = document.getElementsByClassName('password-outermost-container');
+  
+      passwordOutermostContainer[0].classList.add('not-visible-password');
+      dataFromSidebar.classList.add('sidebar-main-mobile');
+    }
+    useEffect(()=>{
+      dataFromPasswordCallback(passwordOutermostContainer[0])
+    },[dataFromPasswordCallback])
   return (
     <>
       {/* <div className='password-outermost-container' style={{ 'height': '435px' ,marginLeft:'242px'}}> */}
-      <div className='password-outermost-container' style={{ 'height': '435px' }}>
-        <div className='password-outermost-container2' style={{ 'height': 'auto', 'minHeight': '435px' }}>
+      {/* <div className='password-outermost-container' style={{ 'height': '435px' }}>
+        <div className='password-outermost-container2' style={{ 'height': 'auto', 'minHeight': '435px' }}> */}
+        <div className='password-outermost-container'>
+        <div className='password-outermost-container2'>
           <div className='password-outermost-container3'>
-            <NavbarMobileCompo />
+          <NavbarMobileCompo ClickedMe={ClickedMe} navTitle='Change Password'/>
 
             <div className='password-wrapper'>
               <form>

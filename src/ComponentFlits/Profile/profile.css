@@ -18,7 +18,10 @@
 
 .profile-outermost-container {
     /* height was inline styling in uno */
-    height: 476px;
+
+
+
+    /* height: 476px; */
     background-color: var(--contentBGColor);
     color: var(--contentTextColor);
     transition: left .3s, opacity .3s;
@@ -191,6 +194,7 @@
     width: 100%;
 }
 .added-profile-input{
+    justify-content: center;
     border: 1px solid;
     display: flex;
     font-weight: 400;
@@ -386,8 +390,8 @@ border: 0;
     pointer-events: none;
     position: absolute;
     right: 8px;
-/* i added top 8px  */
-    top:9px;
+/* i added top 11px  */
+    top:11px;
 }
 
 /* original is below */
@@ -880,6 +884,12 @@ background:  0 0;
 /* edit version text  END*/
 
 
+.not-visible-profile{
+    opacity: 0 !important;
+    display: none !important;
+}
+
+
 
 
 /* ------------------------------ */
@@ -887,23 +897,27 @@ background:  0 0;
     .profile-wrapper {
         padding: 10px;
     }
-
+    
     .profile-outermost-container {
         /*margin-left:0,height:auto "I added"  */
         margin-left: 0;
         height: auto;
-
+        
         display: block;
         float: none !important;
         position: relative;
         left: 0;
         opacity: 1;
         width: 100% !important;
-
+        
     }
-
+    
     .added-profile-innermost-container{
         width: 100%;
+    }
+
+    .not-visible-profile{
+        position: absolute !important;
     }
 }
 

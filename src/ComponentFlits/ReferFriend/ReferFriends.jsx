@@ -1,18 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './referFriends.css';
 import SVGCompo from './SVGCompo';
 import NavbarMobileCompo from '../Sidebar/NavbarMobileCompo';
 
 
-const ReferFriends = () => {
+const ReferFriends = ({dataFromSidebar,dataFromFriendsCallback}) => {
+  const friendsOutermostContainer = document.getElementsByClassName('friends-outermost-container');
+  const ClickedMe = (e) => {
+      e.preventDefault();
+      
+      const friendsOutermostContainer = document.getElementsByClassName('friends-outermost-container');
+  
+      friendsOutermostContainer[0].classList.add('not-visible-friends');
+      dataFromSidebar.classList.add('sidebar-main-mobile');
+    }
+    useEffect(()=>{
+      dataFromFriendsCallback(friendsOutermostContainer[0])
+    },[])
   return (
     <>
       {/* <div className='friends-outermost-container' style={{ height: '523px' }}> */}
       <div className='friends-outermost-container'>
-        <div className='friends-outermost-container2' style={{ height: 'auto', minHeight: '523px' }}>
+        {/* <div className='friends-outermost-container2' style={{ height: 'auto', minHeight: '523px' }}> */}
+        <div className='friends-outermost-container2'>
           <div className='friends-outermost-container3'>
 
-            <NavbarMobileCompo/>
+          <NavbarMobileCompo ClickedMe={ClickedMe} navTitle='Refer Friends'/>
             <div className='friends-wrapper'>
               <div>
                 <div className='friends-first-container friends-first-container-margin'>

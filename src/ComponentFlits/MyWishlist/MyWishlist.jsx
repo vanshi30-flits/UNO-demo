@@ -1,19 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './myWishlist.css';
 import MyWishlistItem from './MyWishlistItem';
+import NavbarMobileCompo from '../Sidebar/NavbarMobileCompo';
 
-const MyWishlist = () => {
+const MyWishlist = ({dataFromSidebar,dataFromWishlistCallback}) => {
+    const wishlistOutermostContainer = document.getElementsByClassName('wishlist-outermost-container');
+
+    const ClickedMe = (e) => {
+        e.preventDefault();
+    const wishlistOutermostContainer = document.getElementsByClassName('wishlist-outermost-container');
+        
+    
+        wishlistOutermostContainer[0].classList.add('not-visible-wishlist');
+        dataFromSidebar.classList.add('sidebar-main-mobile');
+      }
+      useEffect(()=>{
+        dataFromWishlistCallback(wishlistOutermostContainer[0])
+      },[dataFromWishlistCallback])
+
+
+      const [wishlistData,setWishlistData] = useState([1,1,1,1]);
     return (
         <>
-            <div className='wishlist-outermost-container' style={{ height: '435px' }}>
-                <div className='wishlist-outermost-container2' style={{ height: 'auto', minHeight: '435px' }}>
+            {/* <div className='wishlist-outermost-container' style={{ height: '435px' }}>
+                <div className='wishlist-outermost-container2' style={{ height: 'auto', minHeight: '435px' }}> */}
+                <div className='wishlist-outermost-container' >
+                <div className='wishlist-outermost-container2' >
                     <div className='wishlist-outermost-container3'>
+                    <NavbarMobileCompo ClickedMe={ClickedMe} navTitle='My Wishlist' />
                         <div className='wishlist-wrapper'>
                             <div>
                                 <ul className='wishlist-list-container'>
-                                    <MyWishlistItem />
-                                    <MyWishlistItem />
-                                    <MyWishlistItem />
+
+                                    {wishlistData.map((wishlistItem,index)=>{
+                                        return (
+                                            <>                                            
+                                            <MyWishlistItem key={index}/>
+                                            </>
+                                        )
+                                    })}
+                                    {/* <MyWishlistItem /> */}
+                                    {/* <MyWishlistItem /> */}
+
+
+
                                     {/* <li className='wishlist-list-item-container'>
                                         <form className='wishlist-list-item-container-form'>
                                             <div className='wishlist-list-item-container-form-div wishlist-list-item-container-form-div-margin'>

@@ -26,11 +26,11 @@
     transition: all .3s;
 }
 
-/* .menu-item-active{
+.menu-item-active{
     background-color: var(--navigationHoverBGColor);
     border-left: 4px solid !important;
     border-color:var(--navigationBGColor);
-} */
+}
 .menu-item:hover {
     background-color: var(--navigationHoverBGColor);
     border-left: 4px solid !important;
