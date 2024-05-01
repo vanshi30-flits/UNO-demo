@@ -94,8 +94,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
     setCountryCode(localStorage.getItem("countryCode"));
     setBirthdate(localStorage.getItem("birthdate"));
 
-// DONOT ADD dataFromProfileCallback in dependency array of use Efffect else ISSUE=>data will not be preserved across the naviagtion 
-// Eg: change of first_name will not be holded so that user will not be able to resume form filling 
+
   }, [])
 
 
@@ -140,7 +139,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
             }
           } else {
 
-            // inputProfile[i].value = birthdate;
+            inputProfile[i].value = birthdate;
           }          
           
         } else if (inputProfile[i].type === 'tel') {
@@ -192,7 +191,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
               setGender(savedLocalData.gender);
             }
           } else {
-            // inputProfile[i].value = gender;
+            inputProfile[i].value = gender;
           }
 
         } else {
@@ -223,7 +222,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
             } else {
 
-              // inputProfile[i].value = firstName;
+              inputProfile[i].value = firstName;
 
 
             }
@@ -244,7 +243,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
             }
             else {
 
-              // inputProfile[i].value = lastName;
+              inputProfile[i].value = lastName;
 
             }
           } else {            
@@ -254,7 +253,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
               }
             } else {
 
-              // inputProfile[i].value = email;
+              inputProfile[i].value = email;
 
             }
           }
@@ -303,17 +302,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
           inputProfile2[0].value = text
         }
 
-
-        // if (inputProfile2[i + 3].type === 'file') {
-
-        //   fileInput[0].classList.add('edit-version-added-file-input');
-        //   fileInput[0].classList.remove('file-input');
-        //   fileInput[0].classList.add('added-profile-input');
-
-
-        //   fileContainer[0].classList.add('edit-version-file-input-container')
-        //   fileContainer[0].classList.remove('file-input-container');
-        // }
+        
         if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i].classList.contains('date-select')) {
 
           debugger;
@@ -410,8 +399,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
   const dateSelect = document.getElementsByClassName('date-select');
   const timeSelect = document.getElementsByClassName('time-select');
-  const fileInput = document.getElementsByClassName('file-js');
-  const fileContainer = document.getElementsByClassName('file-container');
+  
 
 
 
@@ -419,333 +407,10 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
 
 
-  // const checkEditStateFalse = () => {
-  //   console.log("entered in checkEditStateFalse function");
-  //   console.log("Edit in checkEditStateFalse=>=>", edit);
-
-  //   debugger;
-  //   if (Boolean(edit) === false || edit === String(false)) {
-
-  //     console.log("entered in checkEditStateFalse function =>edit is false");
-
-  //     for (var i = 0; i < container.length; i++) {
-
-  //       container[i].classList.remove('innermost-input-profile-container');
-  //       container[i].classList.add('added-innermost-input-profile-container');
-
-  //       container[i].classList.remove('profile-innermost-container');
-  //       container[i].classList.add('added-profile-innermost-container');
-
-  //       container[i].style.setProperty('width', '');
-
-
-  //       label[i].style.setProperty('margin-bottom', '');
-  //       label[i].classList.add('added-profile-label');
-
-
-
-  //       // console.log("container:", container[i]);
-  //       // console.log("label:", label[i]);
-  //       // console.log('input profile:', inputProfile[i]);
-
-
-
-  //       if (inputProfile[i].name === 'birthdate') {
-  //         inputProfile[i].type = 'date';
-  //         inputProfile[i].style.setProperty('border', '');
-  //         inputProfile[i].style.setProperty('border-color', '');
-  //         inputProfile[i].style.setProperty('display', '');
-  //         inputProfile[i].style.setProperty('font-weight', '')
-  //         inputProfile[i].style.setProperty('height', '');
-  //         inputProfile[i].style.setProperty('padding', '');
-
-
-
-  //         inputProfile[i].classList.add('added-profile-input');
-  //         // inputProfile[i].style.setProperty('text-align','center')
-
-  //         inputProfile[i].removeAttribute('disabled');
-  //         inputProfile[i].removeAttribute('readonly');
-  //       } else if (inputProfile[i].type === 'tel') {
-  //         const inputList = inputProfile[i].classList;
-
-
-  //         inputProfile[i].style.setProperty('padding-left', '42px');
-  //         inputList.remove('profile-input');
-  //         inputList.add('added-contact-input');
-  //         inputList.add('added2-contact-input');
-
-
-  //         inputProfile[i].removeAttribute('disabled');
-  //         inputProfile[i].removeAttribute('readonly');
-
-  //       } else if (inputProfile[i].tagName === 'SELECT') {
-
-
-
-  //         inputProfile[i].classList.remove('profile-gender-select');
-  //         inputProfile[i].classList.add('added-gender-select');
-
-  //         inputProfile[i].removeAttribute('disabled');
-  //         inputProfile[i].removeAttribute('readonly');
-
-  //       } else {
-
-  //         inputProfile[i].style.setProperty('border', '');
-  //         inputProfile[i].style.setProperty('border-color', '');
-  //         inputProfile[i].style.setProperty('display', '');
-  //         inputProfile[i].style.setProperty('font-weight', '')
-  //         inputProfile[i].style.setProperty('height', '');
-  //         inputProfile[i].style.setProperty('padding', '');
-
-
-
-  //         inputProfile[i].classList.add('added-profile-input');
-
-  //         inputProfile[i].removeAttribute('disabled');
-  //         inputProfile[i].removeAttribute('readonly');
-  //       }
-
-
-  //     }
-
-
-
-
-
-
-
-
-  //     for (var i = 0; i < container2.length; i++) {
-
-  //       const containerList2 = container2[i].classList;
-  //       const labelList2 = label2[i].classList;
-  //       const inputList2 = inputProfile2[0].classList;
-
-
-  //       container2[i].style.setProperty('display', 'block');
-  //       containerList2.remove('profile-innermost-container2');
-
-
-  //       labelList2.add('added-profile-label2');
-  //       labelList2.remove('profile-label2');
-
-
-
-  //       inputProfile2[0].style.setProperty('border', '');
-  //       inputProfile2[0].style.setProperty('border-color', '');
-  //       inputProfile2[0].style.setProperty('font-weight', '');
-  //       inputProfile2[0].style.setProperty('display', '');
-  //       inputProfile2[0].style.setProperty('height', '');
-  //       inputProfile2[0].style.setProperty('padding', '');
-  //       inputList2.add('added-profile-input');
-
-  //       inputProfile2[0].removeAttribute('disabled');
-  //       inputProfile2[0].removeAttribute('readonly');
-
-
-
-  //       if (inputProfile2[i + 3].type === 'file') {
-
-  //         fileInput[0].classList.add('edit-version-added-file-input');
-  //         fileInput[0].classList.remove('file-input');
-  //         fileInput[0].classList.add('added-profile-input');
-
-
-  //         fileContainer[0].classList.add('edit-version-file-input-container')
-  //         fileContainer[0].classList.remove('file-input-container');
-
-
-  //         // const fileOuterContainer2 = document.getElementsByClassName('profile-outer-container2');
-  //         // fileOuterContainer2[i].style.setProperty('height', '100px');
-  //       }
-  //       if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i].classList.contains('date-select')) {
-
-
-  //         for (let j = 0; j < dateSelect.length; j++) {
-  //           const dateList = dateSelect[j].classList;
-
-  //           dateList.add('edit-version-added-date-select');
-  //           dateList.add('edit-version-added-profile-input-date-select');
-  //           dateList.add('edit-version-new-date-select');
-
-  //           dateSelect[j].removeAttribute('disabled');
-  //           dateSelect[j].removeAttribute('readonly');
-  //         }
-  //       }
-  //       if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i + 2].classList.contains('time-select')) {
-  //         for (let k = 0; k < timeSelect.length; k++) {
-  //           const timeList = timeSelect[k].classList;
-
-  //           timeList.add('edit-version-added-time-select');
-  //           timeList.add('edit-version-added-profile-input-time-select');
-  //           timeList.add('edit-version-new-time-select');
-  //           timeSelect[k].removeAttribute('disabled');
-  //           timeSelect[k].removeAttribute('readonly');
-  //         }
-  //       }
-  //       // else{
-  //       // inputProfile2[0].style.setProperty('border', '');
-  //       // inputProfile2[0].style.setProperty('border-color', '');
-  //       // inputProfile2[0].style.setProperty('font-weight', '');
-  //       // inputProfile2[0].style.setProperty('display', '');
-  //       // inputProfile2[0].style.setProperty('height', '');
-  //       // inputProfile2[0].style.setProperty('padding', '');
-  //       // inputList2.add('added-profile-input');
-  //       // }
-
-  //     }
-  //   }
-
-  // }
   
-  // THIS WAS ACTIVE BEFORE BELOW FUNC  
-  // checkEditStateFalse();
-
-
-  const calling = () => {
-
-    // edit=>true(CORRECT)
 
 
 
-    // if (edit === true) {
-    if (Boolean(edit) === true || edit === String(true)) {
-
-
-
-
-      for (var i = 0; i < container.length; i++) {
-
-
-
-        const list = container[i].classList;
-        const label_list = label[i].classList;
-        const inputList = inputProfile[i].classList;
-        if (inputProfile[i].type === 'date') {
-          debugger;
-          inputProfile[i].type = 'text';
-          inputList.remove('added-profile-input');
-          inputList.add('profile-input');
-          inputProfile[i].setAttribute('disabled', true);
-          inputProfile[i].setAttribute('readonly', true);
-          inputProfile[i].value = localStorage.getItem('birthdate');
-
-
-        } else if (inputProfile[i].type === 'tel') {
-          debugger;
-          inputProfile[i].style.setProperty('padding-left', '');
-          inputList.add('profile-input');
-          inputList.remove('added-contact-input');
-          inputList.remove('added2-contact-input');
-          inputProfile[i].setAttribute('disabled', true);
-          inputProfile[i].setAttribute('readonly', true);
-          inputProfile[i].value = localStorage.getItem('contactNumber');
-        } else if (inputProfile[i].tagName === 'SELECT') {
-          inputList.remove('added-gender-select');
-          inputList.add('profile-gender-select');
-          inputProfile[i].setAttribute('disabled', true);
-          inputProfile[i].setAttribute('readonly', true);
-          inputProfile[i].value = localStorage.getItem('gender');
-        }
-        else {
-          inputList.remove('added-profile-input');
-          inputList.add('profile-input');
-          inputProfile[i].setAttribute('disabled', true);
-          inputProfile[i].setAttribute('readonly', true);
-          if (inputProfile[i].name === 'first_name') {
-            inputProfile[i].value = localStorage.getItem('firstName');
-          } else if (inputProfile[i].name === 'email') {
-            inputProfile[i].value = localStorage.getItem("email");
-          } else {
-            inputProfile[i].value = localStorage.getItem('lastName');
-          }
-        }
-
-
-
-        label_list.add('profile-label');
-        label_list.remove('added-profile-label');
-
-
-        list.remove('added-profile-innermost-container');
-        list.remove('added-innermost-input-profile-container');
-        list.add('profile-innermost-container');
-        list.add('innermost-input-profile-container');
-      }
-
-      for (var i = 0; i < container2.length; i++) {
-
-        const containerList2 = container2[i].classList;
-        const labelList2 = label2[i].classList;
-        const inputList2 = inputProfile2[0].classList;
-
-
-
-        container2[i].style.setProperty('display', '');
-        containerList2.add('profile-innermost-container2');
-
-        labelList2.add('profile-label');
-        labelList2.remove('added-profile-label');
-
-        inputList2.remove('added-profile-input');
-        inputList2.add('profile-input');
-        inputProfile2[0].setAttribute('disabled', true);
-        inputProfile2[0].setAttribute('readonly', true);
-
-        inputProfile2[i].value = localStorage.getItem('text');
-
-        // if (inputProfile2[i + 3].type === 'file') {
-
-
-
-        //   fileInput[0].classList.remove('edit-version-added-file-input');
-        //   fileInput[0].classList.add('file-input');
-        //   fileInput[0].classList.remove('added-profile-input');
-
-
-        //   fileContainer[0].classList.remove('edit-version-file-input-container')
-        //   fileContainer[0].classList.add('file-input-container');
-
-
-        // }
-
-
-        if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i].classList.contains('date-select')) {
-
-
-
-          for (let j = 0; j < dateSelect.length; j++) {
-            const dateList = dateSelect[j].classList;
-
-
-            dateList.remove('edit-version-added-date-select');
-            dateList.remove('edit-version-added-profile-input-date-select');
-            dateList.remove('edit-version-new-date-select');
-
-            dateList.add('date-select');
-            dateList.add('profile-input-date-select');
-            dateSelect[j].setAttribute('disabled', true);
-            dateSelect[j].setAttribute('readonly', true);
-
-          }
-        }
-
-        if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i + 2].classList.contains('time-select')) {
-          for (let k = 0; k < timeSelect.length; k++) {
-            const timeList = timeSelect[k].classList;
-
-            timeList.remove('edit-version-added-time-select');
-            timeList.remove('edit-version-added-profile-input-time-select');
-            timeList.remove('edit-version-new-time-select');
-            timeSelect[k].setAttribute('disabled', true);
-            timeSelect[k].setAttribute('readonly', true);
-          }
-        }
-      }
-    }
-
-  }
   const handleCancleButton = (e) => {
     e.preventDefault();
 
@@ -842,16 +507,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
         inputProfile2[0].setAttribute('readonly', true);        
         setText(localStorage.getItem('text'));
 
-        // if (inputProfile2[i + 3].type === 'file') {
-
-
-
-        //   fileInput[0].classList.remove('edit-version-added-file-input');
-        //   fileInput[0].classList.add('file-input');
-        //   fileInput[0].classList.remove('added-profile-input');
-        //   fileContainer[0].classList.remove('edit-version-file-input-container')
-        //   fileContainer[0].classList.add('file-input-container');        
-        // }
+        
 
 
         if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i].classList.contains('date-select')) {
@@ -902,7 +558,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
     localStorage.removeItem('tempStoreLocal');
     setTempStore({})
 
-    // calling();
+
 
     handleProfileMobile();
   }
@@ -926,28 +582,10 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
       });
       return
     }
-    // else if (email) {
+    
 
 
-    //   // const hasUpperCase = (str) => /[A-Z]/.test(str);
-    //   if (/[A-Z]/.test(email)) {
-
-    //     toast.error('Email cannot contain uppercase letters', {
-    //       position: "bottom-center",
-    //       autoClose: 5000,
-    //       hideProgressBar: false,
-    //       closeOnClick: true,
-    //       pauseOnHover: true,
-    //       draggable: true,
-    //       progress: undefined,
-    //       theme: "dark",
-    //       // transition: Bounce,
-    //     });
-    //     return
-    //   }
-    //   return
-
-    // } 
+    
     else {
       toast.success('profile data saved', {
         position: "bottom-center",
@@ -958,7 +596,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
         draggable: true,
         progress: undefined,
         theme: "dark",
-        // onClose: () => { setEdit((edit) => !edit); calling() } 
+        
 
         onClose: () => {
           
@@ -1048,20 +686,6 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
               inputProfile2[i].value = localStorage.getItem('text');
 
-              // if (inputProfile2[i + 3].type === 'file') {
-
-
-
-              //   fileInput[0].classList.remove('edit-version-added-file-input');
-              //   fileInput[0].classList.add('file-input');
-              //   fileInput[0].classList.remove('added-profile-input');
-
-
-              //   fileContainer[0].classList.remove('edit-version-file-input-container')
-              //   fileContainer[0].classList.add('file-input-container');
-
-
-              // }
 
 
               if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i].classList.contains('date-select')) {
@@ -1098,7 +722,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
             }
           }
 
-          // calling()
+          
           localStorage.removeItem('tempStoreLocal');
           setTempStore({})
           handleProfileMobile();
@@ -1259,19 +883,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
 
 
-        // if (inputProfile2[i + 3].type === 'file') {
-
-        //   fileInput[0].classList.add('edit-version-added-file-input');
-        //   fileInput[0].classList.remove('file-input');
-        //   fileInput[0].classList.add('added-profile-input');
-
-
-        //   fileContainer[0].classList.add('edit-version-file-input-container')
-        //   fileContainer[0].classList.remove('file-input-container');
-
-
-
-        // }
+        
         if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i].classList.contains('date-select')) {
 
 

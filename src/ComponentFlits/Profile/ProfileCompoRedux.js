@@ -15,10 +15,10 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
     const data = useSelector((state) => {
         return state.profile
     })
-    
+
 
     const [edit, setEdit] = useState(localStorage.getItem('editState'));
-    
+
 
 
     // ------------------------------- start of mobile view sidebar to appear ---------------------------------------------
@@ -42,24 +42,13 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
     //   THIS IS RESPONSIBLE FOR PRESERVING RESUME FORM FILL
     useEffect(() => {
-        
+
         dispatch(profileEditState(localStorage.getItem('editState')))
-            
-        const savedLocalData = JSON.parse(localStorage.getItem('tempStoreLocal'));        
 
-        // below is correct
+        const savedLocalData = JSON.parse(localStorage.getItem('tempStoreLocal'));
+
+
         if (data.editState === false || data.editState === String(false)) {
-
-            // if(localStorage.getItem('editState') === 'false'){
-
-
-
-
-
-            // if (Boolean(data.editState) !== false || data.editState !== String(false)) {
-            // if(data.editState === false){
-
-
 
             for (var i = 0; i < container.length; i++) {
 
@@ -90,7 +79,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
 
                     inputProfile[i].removeAttribute('disabled');
-                    inputProfile[i].removeAttribute('readonly');                
+                    inputProfile[i].removeAttribute('readonly');
 
                     if (savedLocalData) {
                         if (savedLocalData.birthdate) {
@@ -109,16 +98,16 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
 
                     inputProfile[i].removeAttribute('disabled');
-                    inputProfile[i].removeAttribute('readonly');                    
+                    inputProfile[i].removeAttribute('readonly');
 
                     if (savedLocalData) {
-                        if (savedLocalData.phone) {                            
+                        if (savedLocalData.phone) {
                             dispatch(profileEditContactNumber(savedLocalData.phone))
 
-                        } else if (savedLocalData.countryCode) {                            
+                        } else if (savedLocalData.countryCode) {
                             dispatch(profileEditCountryCode(savedLocalData.countryCode))
                         }
-                    } 
+                    }
 
 
                 } else if (inputProfile[i].tagName === 'SELECT') {
@@ -129,10 +118,10 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                     inputProfile[i].classList.add('added-gender-select');
 
                     inputProfile[i].removeAttribute('disabled');
-                    inputProfile[i].removeAttribute('readonly');                    
+                    inputProfile[i].removeAttribute('readonly');
 
                     if (savedLocalData) {
-                        if (savedLocalData.gender) {                            
+                        if (savedLocalData.gender) {
                             dispatch(profileEditGender(savedLocalData.gender))
                         }
                     }
@@ -165,16 +154,16 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
                         if (savedLocalData) {
 
-                            if (savedLocalData.last_name) {                                
+                            if (savedLocalData.last_name) {
                                 dispatch(profileEditLastName(savedLocalData.last_name))
                             }
-                        }                        
+                        }
                     } else {
                         if (savedLocalData) {
-                            if (savedLocalData.email) {                                
+                            if (savedLocalData.email) {
                                 dispatch(profileEditEmail(savedLocalData.email))
                             }
-                        } 
+                        }
                     }
                 }
 
@@ -192,14 +181,14 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
                 const containerList2 = container2[i].classList;
                 const labelList2 = label2[i].classList;
-                const inputList2 = inputProfile2[0].classList;                
+                const inputList2 = inputProfile2[0].classList;
 
                 container2[i].style.setProperty('display', 'block');
                 containerList2.remove('profile-innermost-container2');
 
 
                 labelList2.add('added-profile-label2');
-                
+
                 labelList2.remove('profile-label2');
 
 
@@ -216,10 +205,10 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                 inputProfile2[0].removeAttribute('readonly');
 
                 if (savedLocalData) {
-                    if (savedLocalData.text) {                        
+                    if (savedLocalData.text) {
                         dispatch(profileEditText(savedLocalData.text))
                     }
-                } 
+                }
 
 
                 if (inputProfile2[i + 3].type === 'file') {
@@ -230,7 +219,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
 
                     fileContainer[0].classList.add('edit-version-file-input-container')
-                    fileContainer[0].classList.remove('file-input-container');                    
+                    fileContainer[0].classList.remove('file-input-container');
                 }
                 if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i].classList.contains('date-select')) {
 
@@ -245,13 +234,13 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                         dateSelect[j].removeAttribute('disabled');
                         dateSelect[j].removeAttribute('readonly');
                         if (savedLocalData) {
-                            if (savedLocalData.year) {                                
+                            if (savedLocalData.year) {
                                 dispatch(profileEditYear(savedLocalData.year))
                             }
-                            if (savedLocalData.month) {                                
+                            if (savedLocalData.month) {
                                 dispatch(profileEditMonth(savedLocalData.month))
                             }
-                            if (savedLocalData.day) {                                                            
+                            if (savedLocalData.day) {
                                 dispatch(profileEditDay(savedLocalData.day))
                             }
                         }
@@ -269,30 +258,30 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
                         if (savedLocalData) {
                             if (savedLocalData.hour) {
-                                
+
                                 dispatch(profileEditHour(savedLocalData.hour))
                             }
                             if (savedLocalData.minute) {
                                 debugger;
-                                
+
                                 dispatch(profileEditMinute(savedLocalData.minute))
                             }
                         } else {
                             if (timeSelect[k].name === 'hour') {
-                                
+
                             }
                             if (timeSelect[k].name === 'minute') {
-                                
+
                             }
                         }
                     }
                 }
-                
+
 
             }
         }
 
-    
+
     }, [data.editState])
 
 
@@ -300,7 +289,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
 
 
-    
+
 
     const container = document.getElementsByClassName('container-js');
     const label = document.getElementsByClassName('profile-label');
@@ -316,19 +305,29 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
     const timeSelect = document.getElementsByClassName('time-select');
     const fileInput = document.getElementsByClassName('file-js');
     const fileContainer = document.getElementsByClassName('file-container');
-    const container2 = document.getElementsByClassName('container2-js');    
-
-    const calling = () => {
-
-        
+    const container2 = document.getElementsByClassName('container2-js');
 
 
+    const handleCancleButton = (e) => {
+        e.preventDefault();
 
-        // if (edit === true) {
-        // if (Boolean(edit) === true || edit === String(true)) {
-        if (Boolean(data.editState) === true || data.editState === String(true)) {
-            // if (data.editState === true) {
 
+
+        data.editState = true
+
+        dispatch(profileCancel(data))
+        debugger;
+
+
+        if (typeof edit === 'string') {
+            var editNew = true;
+        } else {
+            var editNew = !edit
+        }
+        setEdit(editNew);
+
+
+        if (data.editState === true || data.editState === String(true)) {
 
 
 
@@ -346,7 +345,6 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                     inputList.add('profile-input');
                     inputProfile[i].setAttribute('disabled', true);
                     inputProfile[i].setAttribute('readonly', true);
-                    // inputProfile[i].value = localStorage.getItem('birthdate');
 
 
                 } else if (inputProfile[i].type === 'tel') {
@@ -357,26 +355,20 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                     inputList.remove('added2-contact-input');
                     inputProfile[i].setAttribute('disabled', true);
                     inputProfile[i].setAttribute('readonly', true);
-                    // inputProfile[i].value = localStorage.getItem('contactNumber');
+
                 } else if (inputProfile[i].tagName === 'SELECT') {
                     inputList.remove('added-gender-select');
                     inputList.add('profile-gender-select');
                     inputProfile[i].setAttribute('disabled', true);
                     inputProfile[i].setAttribute('readonly', true);
-                    // inputProfile[i].value = localStorage.getItem('gender');
+
                 }
                 else {
                     inputList.remove('added-profile-input');
                     inputList.add('profile-input');
                     inputProfile[i].setAttribute('disabled', true);
                     inputProfile[i].setAttribute('readonly', true);
-                    if (inputProfile[i].name === 'first_name') {
-                        // inputProfile[i].value = localStorage.getItem('firstName');
-                    } else if (inputProfile[i].name === 'email') {
-                        // inputProfile[i].value = localStorage.getItem("email");
-                    } else {
-                        // inputProfile[i].value = localStorage.getItem('lastName');
-                    }
+
                 }
 
 
@@ -410,8 +402,6 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                 inputProfile2[0].setAttribute('disabled', true);
                 inputProfile2[0].setAttribute('readonly', true);
 
-                inputProfile2[i].value = localStorage.getItem('text');
-
                 if (inputProfile2[i + 3].type === 'file') {
 
 
@@ -423,8 +413,6 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
                     fileContainer[0].classList.remove('edit-version-file-input-container')
                     fileContainer[0].classList.add('file-input-container');
-
-
                 }
 
 
@@ -444,7 +432,6 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                         dateList.add('profile-input-date-select');
                         dateSelect[j].setAttribute('disabled', true);
                         dateSelect[j].setAttribute('readonly', true);
-
                     }
                 }
 
@@ -462,163 +449,11 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
             }
         }
 
-    }
-    const handleCancleButton = (e) => {
-        e.preventDefault();
-
-        // () => { setEdit(true) }
-
-        data.editState = true
-        
-        dispatch(profileCancel(data))
-        debugger;
-        // THIS NOT WORKING SO IN CALLING(edit===false)  in real in calling it should be(edit===true) inside if branch
-
-
-        //  setEdit((edit) => !edit);
-        // setEdit(prevEdit => !prevEdit);
-
-
-        // var editNew = ((typeof edit === 'string') ? (edit === Str) : (Boolean(edit) ));
-
-        if (typeof edit === 'string') {
-            var editNew = true;
-        } else {
-            var editNew = !edit
-        }
-        setEdit(editNew);
-
-        // setEdit(true);
-
-        // if (editNew === true || editNew === String(true)) {
-            if (data.editState === true || data.editState === String(true)) {
-
-
-            
-            for (var i = 0; i < container.length; i++) {
-
-
-
-                const list = container[i].classList;
-                const label_list = label[i].classList;
-                const inputList = inputProfile[i].classList;
-                if (inputProfile[i].type === 'date') {
-                    debugger;
-                    inputProfile[i].type = 'text';
-                    inputList.remove('added-profile-input');
-                    inputList.add('profile-input');
-                    inputProfile[i].setAttribute('disabled', true);
-                    inputProfile[i].setAttribute('readonly', true);                    
-
-
-                } else if (inputProfile[i].type === 'tel') {
-                    debugger;
-                    inputProfile[i].style.setProperty('padding-left', '');
-                    inputList.add('profile-input');
-                    inputList.remove('added-contact-input');
-                    inputList.remove('added2-contact-input');
-                    inputProfile[i].setAttribute('disabled', true);
-                    inputProfile[i].setAttribute('readonly', true);
-                    
-                } else if (inputProfile[i].tagName === 'SELECT') {
-                    inputList.remove('added-gender-select');
-                    inputList.add('profile-gender-select');
-                    inputProfile[i].setAttribute('disabled', true);
-                    inputProfile[i].setAttribute('readonly', true);
-
-                }
-                else {
-                    inputList.remove('added-profile-input');
-                    inputList.add('profile-input');
-                    inputProfile[i].setAttribute('disabled', true);
-                    inputProfile[i].setAttribute('readonly', true);
-                    
-                }
-
-
-
-                label_list.add('profile-label');
-                label_list.remove('added-profile-label');
-
-
-                list.remove('added-profile-innermost-container');
-                list.remove('added-innermost-input-profile-container');
-                list.add('profile-innermost-container');
-                list.add('innermost-input-profile-container');
-            }
-
-            for (var i = 0; i < container2.length; i++) {
-
-                const containerList2 = container2[i].classList;
-                const labelList2 = label2[i].classList;
-                const inputList2 = inputProfile2[0].classList;
-
-
-
-                container2[i].style.setProperty('display', '');
-                containerList2.add('profile-innermost-container2');
-
-                labelList2.add('profile-label');
-                labelList2.remove('added-profile-label');
-
-                inputList2.remove('added-profile-input');
-                inputList2.add('profile-input');
-                inputProfile2[0].setAttribute('disabled', true);
-                inputProfile2[0].setAttribute('readonly', true);
-
-                if (inputProfile2[i + 3].type === 'file') {
-
-
-
-                    fileInput[0].classList.remove('edit-version-added-file-input');
-                    fileInput[0].classList.add('file-input');
-                    fileInput[0].classList.remove('added-profile-input');
-
-
-                    fileContainer[0].classList.remove('edit-version-file-input-container')
-                    fileContainer[0].classList.add('file-input-container');                    
-                }
-
-
-                if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i].classList.contains('date-select')) {
-
-
-
-                    for (let j = 0; j < dateSelect.length; j++) {
-                        const dateList = dateSelect[j].classList;
-
-
-                        dateList.remove('edit-version-added-date-select');
-                        dateList.remove('edit-version-added-profile-input-date-select');
-                        dateList.remove('edit-version-new-date-select');
-
-                        dateList.add('date-select');
-                        dateList.add('profile-input-date-select');
-                        dateSelect[j].setAttribute('disabled', true);
-                        dateSelect[j].setAttribute('readonly', true);
-                    }
-                }
-
-                if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i + 2].classList.contains('time-select')) {
-                    for (let k = 0; k < timeSelect.length; k++) {
-                        const timeList = timeSelect[k].classList;
-
-                        timeList.remove('edit-version-added-time-select');
-                        timeList.remove('edit-version-added-profile-input-time-select');
-                        timeList.remove('edit-version-new-time-select');
-                        timeSelect[k].setAttribute('disabled', true);
-                        timeSelect[k].setAttribute('readonly', true);                        
-                    }
-                }
-            }
-        }
-
         localStorage.removeItem('tempStoreLocal');
-        
 
 
-        // below was on before
-        // calling();
+
+
 
         handleProfileMobile();
     }
@@ -643,176 +478,176 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
             return
         }
         else {
-        toast.success('profile data saved', {
-            position: "bottom-center",
-            autoClose: 800,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            // onClose: () => { setEdit((edit) => !edit); calling() } 
-
-            onClose: () => {
-                
+            toast.success('profile data saved', {
+                position: "bottom-center",
+                autoClose: 800,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
 
 
-                // below is correct
-                const callingVar = true;
-                setEdit(callingVar);
-
-
-                    if (data.editState === true || data.editState === String(true)) {                    
-                    
-                    for (var i = 0; i < container.length; i++) {
+                onClose: () => {
 
 
 
-                        const list = container[i].classList;
-                        const label_list = label[i].classList;
-                        const inputList = inputProfile[i].classList;
-                        if (inputProfile[i].type === 'date') {
-                            debugger;
-                            inputProfile[i].type = 'text';
-                            inputList.remove('added-profile-input');
-                            inputList.add('profile-input');
-                            inputProfile[i].setAttribute('disabled', true);
-                            inputProfile[i].setAttribute('readonly', true);
-                            
+
+                    const callingVar = true;
+                    setEdit(callingVar);
 
 
-                        } else if (inputProfile[i].type === 'tel') {
-                            debugger;
-                            inputProfile[i].style.setProperty('padding-left', '');
-                            inputList.add('profile-input');
-                            inputList.remove('added-contact-input');
-                            inputList.remove('added2-contact-input');
-                            inputProfile[i].setAttribute('disabled', true);
-                            inputProfile[i].setAttribute('readonly', true);
-                            
-                        } else if (inputProfile[i].tagName === 'SELECT') {
-                            inputList.remove('added-gender-select');
-                            inputList.add('profile-gender-select');
-                            inputProfile[i].setAttribute('disabled', true);
-                            inputProfile[i].setAttribute('readonly', true);
-                            
-                        }
-                        else {
-                            inputList.remove('added-profile-input');
-                            inputList.add('profile-input');
-                            inputProfile[i].setAttribute('disabled', true);
-                            inputProfile[i].setAttribute('readonly', true);
-                            
-                        }
+                    if (data.editState === true || data.editState === String(true)) {
+
+                        for (var i = 0; i < container.length; i++) {
 
 
 
-                        label_list.add('profile-label');
-                        label_list.remove('added-profile-label');
-
-
-                        list.remove('added-profile-innermost-container');
-                        list.remove('added-innermost-input-profile-container');
-                        list.add('profile-innermost-container');
-                        list.add('innermost-input-profile-container');
-                    }
-
-                    for (var i = 0; i < container2.length; i++) {
-
-                        const containerList2 = container2[i].classList;
-                        const labelList2 = label2[i].classList;
-                        const inputList2 = inputProfile2[0].classList;
+                            const list = container[i].classList;
+                            const label_list = label[i].classList;
+                            const inputList = inputProfile[i].classList;
+                            if (inputProfile[i].type === 'date') {
+                                debugger;
+                                inputProfile[i].type = 'text';
+                                inputList.remove('added-profile-input');
+                                inputList.add('profile-input');
+                                inputProfile[i].setAttribute('disabled', true);
+                                inputProfile[i].setAttribute('readonly', true);
 
 
 
-                        container2[i].style.setProperty('display', '');
-                        containerList2.add('profile-innermost-container2');
+                            } else if (inputProfile[i].type === 'tel') {
+                                debugger;
+                                inputProfile[i].style.setProperty('padding-left', '');
+                                inputList.add('profile-input');
+                                inputList.remove('added-contact-input');
+                                inputList.remove('added2-contact-input');
+                                inputProfile[i].setAttribute('disabled', true);
+                                inputProfile[i].setAttribute('readonly', true);
 
-                        labelList2.add('profile-label');
-                        labelList2.remove('added-profile-label');
-
-                        inputList2.remove('added-profile-input');
-                        inputList2.add('profile-input');
-                        inputProfile2[0].setAttribute('disabled', true);
-                        inputProfile2[0].setAttribute('readonly', true);
-
-                        
-
-                        if (inputProfile2[i + 3].type === 'file') {
-
-
-
-                            fileInput[0].classList.remove('edit-version-added-file-input');
-                            fileInput[0].classList.add('file-input');
-                            fileInput[0].classList.remove('added-profile-input');
-
-
-                            fileContainer[0].classList.remove('edit-version-file-input-container')
-                            fileContainer[0].classList.add('file-input-container');
-
-
-                        }
-
-
-                        if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i].classList.contains('date-select')) {
-
-
-
-                            for (let j = 0; j < dateSelect.length; j++) {
-                                const dateList = dateSelect[j].classList;
-
-
-                                dateList.remove('edit-version-added-date-select');
-                                dateList.remove('edit-version-added-profile-input-date-select');
-                                dateList.remove('edit-version-new-date-select');
-
-                                dateList.add('date-select');
-                                dateList.add('profile-input-date-select');
-                                dateSelect[j].setAttribute('disabled', true);
-                                dateSelect[j].setAttribute('readonly', true);
+                            } else if (inputProfile[i].tagName === 'SELECT') {
+                                inputList.remove('added-gender-select');
+                                inputList.add('profile-gender-select');
+                                inputProfile[i].setAttribute('disabled', true);
+                                inputProfile[i].setAttribute('readonly', true);
 
                             }
+                            else {
+                                inputList.remove('added-profile-input');
+                                inputList.add('profile-input');
+                                inputProfile[i].setAttribute('disabled', true);
+                                inputProfile[i].setAttribute('readonly', true);
+
+                            }
+
+
+
+                            label_list.add('profile-label');
+                            label_list.remove('added-profile-label');
+
+
+                            list.remove('added-profile-innermost-container');
+                            list.remove('added-innermost-input-profile-container');
+                            list.add('profile-innermost-container');
+                            list.add('innermost-input-profile-container');
                         }
 
-                        if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i + 2].classList.contains('time-select')) {
-                            for (let k = 0; k < timeSelect.length; k++) {
-                                const timeList = timeSelect[k].classList;
+                        for (var i = 0; i < container2.length; i++) {
 
-                                timeList.remove('edit-version-added-time-select');
-                                timeList.remove('edit-version-added-profile-input-time-select');
-                                timeList.remove('edit-version-new-time-select');
-                                timeSelect[k].setAttribute('disabled', true);
-                                timeSelect[k].setAttribute('readonly', true);
+                            const containerList2 = container2[i].classList;
+                            const labelList2 = label2[i].classList;
+                            const inputList2 = inputProfile2[0].classList;
+
+
+
+                            container2[i].style.setProperty('display', '');
+                            containerList2.add('profile-innermost-container2');
+
+                            labelList2.add('profile-label');
+                            labelList2.remove('added-profile-label');
+
+                            inputList2.remove('added-profile-input');
+                            inputList2.add('profile-input');
+                            inputProfile2[0].setAttribute('disabled', true);
+                            inputProfile2[0].setAttribute('readonly', true);
+
+
+
+                            if (inputProfile2[i + 3].type === 'file') {
+
+
+
+                                fileInput[0].classList.remove('edit-version-added-file-input');
+                                fileInput[0].classList.add('file-input');
+                                fileInput[0].classList.remove('added-profile-input');
+
+
+                                fileContainer[0].classList.remove('edit-version-file-input-container')
+                                fileContainer[0].classList.add('file-input-container');
+
+
+                            }
+
+
+                            if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i].classList.contains('date-select')) {
+
+
+
+                                for (let j = 0; j < dateSelect.length; j++) {
+                                    const dateList = dateSelect[j].classList;
+
+
+                                    dateList.remove('edit-version-added-date-select');
+                                    dateList.remove('edit-version-added-profile-input-date-select');
+                                    dateList.remove('edit-version-new-date-select');
+
+                                    dateList.add('date-select');
+                                    dateList.add('profile-input-date-select');
+                                    dateSelect[j].setAttribute('disabled', true);
+                                    dateSelect[j].setAttribute('readonly', true);
+
+                                }
+                            }
+
+                            if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i + 2].classList.contains('time-select')) {
+                                for (let k = 0; k < timeSelect.length; k++) {
+                                    const timeList = timeSelect[k].classList;
+
+                                    timeList.remove('edit-version-added-time-select');
+                                    timeList.remove('edit-version-added-profile-input-time-select');
+                                    timeList.remove('edit-version-new-time-select');
+                                    timeSelect[k].setAttribute('disabled', true);
+                                    timeSelect[k].setAttribute('readonly', true);
+                                }
                             }
                         }
                     }
+
+
+
+
+
+
+                    localStorage.removeItem('tempStoreLocal');
+
+                    handleProfileMobile();
                 }
 
-
-                
-
-
-                
-                localStorage.removeItem('tempStoreLocal');
-                
-                handleProfileMobile();
             }
-
+            );
         }
-        );
-    }
-        
+
         data.editState = true;
-        
+
         dispatch(profileSave(data));
-        
+
     }
-    
+
     const handleChangeSession = (e) => {
-        e.preventDefault();        
-        const { value, name } = e.target;        
-        dispatch(setTempStoreLocal({ value, name }))                
+        e.preventDefault();
+        const { value, name } = e.target;
+        dispatch(setTempStoreLocal({ value, name }))
     }
     useEffect(() => {
         localStorage.setItem('tempStoreLocal', JSON.stringify(data.tempStoreLocal));
@@ -823,12 +658,12 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
         e.preventDefault();
         debugger;
         data.editState = false
-        
+
         dispatch(profileEdit(data))
 
         const newEdit = !edit;
         setEdit(newEdit)
-        
+
         if (Boolean(data.editState) === false || data.editState === String(false)) {
 
 
@@ -865,7 +700,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
 
                     inputProfile[i].classList.add('added-profile-input');
-                    
+
 
                     inputProfile[i].removeAttribute('disabled');
                     inputProfile[i].removeAttribute('readonly');
@@ -890,10 +725,10 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
 
 
-                    
+
                 } else if (inputProfile[i].tagName === 'SELECT') {
 
-                    
+
 
                     inputProfile[i].classList.remove('profile-gender-select');
                     inputProfile[i].classList.add('added-gender-select');
@@ -904,7 +739,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
 
 
-                    
+
                 } else {
 
                     inputProfile[i].style.setProperty('border', '');
@@ -921,7 +756,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                     inputProfile[i].removeAttribute('disabled');
                     inputProfile[i].removeAttribute('readonly');
 
-                    
+
                 }
 
 
@@ -965,7 +800,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                 inputProfile2[0].removeAttribute('disabled');
                 inputProfile2[0].removeAttribute('readonly');
 
-                
+
 
 
 
@@ -994,7 +829,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
                         dateSelect[j].removeAttribute('disabled');
                         dateSelect[j].removeAttribute('readonly');
-                        
+
 
                     }
                 }
@@ -1008,7 +843,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                         timeSelect[k].removeAttribute('disabled');
                         timeSelect[k].removeAttribute('readonly');
 
-                        
+
                     }
                 }
 
@@ -1040,7 +875,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                     <div className='profile-outermost-container3'>
 
                         <NavbarMobileCompo ClickedMe={ClickedMe} navTitle='My Profile' />
-                        
+
 
                         <div className='profile-wrapper'>
                             <form onSubmit={handleSubmit} >
@@ -1102,7 +937,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                                                 }}></input>
 
                                             {((typeof edit === 'string') ? (edit === String(false)) : (Boolean(edit) === false)) ? (
-                                            // {((typeof data.editState === 'string') ? (data.editState === String(false)) : (Boolean(data.editState) === false)) ? (
+                                                // {((typeof data.editState === 'string') ? (data.editState === String(false)) : (Boolean(data.editState) === false)) ? (
                                                 <div>
                                                     <input className='contact-inner-input' type='text' style={{ width: '52px' }} readonly disabled
                                                         value={data.countryCode ? data.countryCode : '+1'}></input>
@@ -1134,7 +969,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                                             <label className='profile-label'>Birthdate: </label>
 
                                             <input disabled className='profile-input input-js' placeholder name='birthdate' type='text' readonly
-                                                value={data.birthdate} onChange={e => {                                                    
+                                                value={data.birthdate} onChange={e => {
                                                     dispatch(profileEditBirthdate(e.target.value))
                                                     handleChangeSession(e)
                                                 }}></input>
@@ -1207,7 +1042,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                                             <div className='date-container p'>
                                                 <div className='date-year-container'>
                                                     <select disabled className='date-select profile-input-date-select input2-js' name='year' value={data.year} onChange={e => {
-                                                        // setYear(e.target.value);
+                                                        
                                                         handleChangeSession(e)
                                                         dispatch(profileEditYear(e.target.value));
                                                     }}>
@@ -1223,7 +1058,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                                                 </div>
                                                 <div className='date-month-container marg-mon month' >
                                                     <select disabled className='date-select profile-input-date-select input2-js' name='month' value={data.month} onChange={e => {
-                                                        // setMonth(e.target.value);
+                                                        
                                                         dispatch(profileEditMonth(e.target.value));
                                                         handleChangeSession(e)
                                                     }} >
@@ -1316,8 +1151,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                                 <div>
                                     <div className='profile-outer-container outer-container-btn'>
 
-                                        {/* {edit === (true || String(true)) ? */}
-                                        {/* {((typeof edit === 'string') ? (edit === String(true)) : Boolean(edit) === true) ? */}
+                                        
                                         {((typeof edit === 'string') ? (edit === String(true)) : Boolean(edit) === true) ?
                                             (
                                                 <div className='second-inner-container'>
