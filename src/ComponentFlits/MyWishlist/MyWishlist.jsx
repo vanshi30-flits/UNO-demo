@@ -3,7 +3,7 @@ import './myWishlist.css';
 import MyWishlistItem from './MyWishlistItem';
 import NavbarMobileCompo from '../Sidebar/NavbarMobileCompo';
 
-const MyWishlist = ({dataFromSidebar,dataFromWishlistCallback}) => {
+const MyWishlist = ({dataFromSidebar,dataFromWishlistCallback,totalDataFromWIshlistFunc}) => {
     const wishlistOutermostContainer = document.getElementsByClassName('wishlist-outermost-container');
 
     const ClickedMe = (e) => {
@@ -20,6 +20,11 @@ const MyWishlist = ({dataFromSidebar,dataFromWishlistCallback}) => {
 
 
       const [wishlistData,setWishlistData] = useState([1,1,1,1]);
+      const totalDataFromWishlist = wishlistData.length
+
+      useEffect(()=>{
+        totalDataFromWIshlistFunc(totalDataFromWishlist)
+      },[totalDataFromWishlist,totalDataFromWIshlistFunc])
     return (
         <>
             {/* <div className='wishlist-outermost-container' style={{ height: '435px' }}>

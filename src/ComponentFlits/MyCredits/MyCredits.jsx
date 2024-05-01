@@ -9,6 +9,7 @@ const MyCredits = ({dataFromSidebar,dataFromCreditsCallback}) => {
     const [currentPage,setCurrentPage] = useState(1);
     const [dataPerPage,setDataPerPage] = useState(7);
     const [totalData,setTotalData]=useState([2,2,2,2,2,2,2,2,2,2]);
+    const totalPages = Math.ceil(totalData.length/dataPerPage);
     const ClickedMe = (e) => {
         e.preventDefault();
         
@@ -34,10 +35,19 @@ const MyCredits = ({dataFromSidebar,dataFromCreditsCallback}) => {
 
     const handlePageNumberClick = (e) => {
         e.preventDefault();
-        const currentPageRecieved = Number(e.target.id);
-        console.log("cc",currentPageRecieved);
+        const currentPageRecieved = Number(e.target.id);        
         setCurrentPage(currentPageRecieved);
-        // console.log("c",currentPage);
+        
+    }
+    const handleLeftPageShiftBtn = (e) =>{
+        e.preventDefault();
+        setCurrentPage(currentPage > 1 ? currentPage -1 : 1)
+    }
+    const handleRightPageShiftBtn = (e) =>{
+        e.preventDefault(); 
+        console.log("clicked right btn pagination");
+
+        setCurrentPage( currentPage < totalPages ? currentPage +1 : totalPages )
     }
     return (
         <>
@@ -148,7 +158,7 @@ const MyCredits = ({dataFromSidebar,dataFromCreditsCallback}) => {
                                     </ul>
                                 </div>
                             </div>
-                            <Pagination totalData={totalData} currentPage={currentPage} dataPerPage={dataPerPage} handlePageNumberClick={handlePageNumberClick}/>
+                            <Pagination totalData={totalData} currentPage={currentPage} dataPerPage={dataPerPage} handlePageNumberClick={handlePageNumberClick} handleRightPageShiftBtn={handleRightPageShiftBtn} handleLeftPageShiftBtn={handleLeftPageShiftBtn}/>
                         </div>
                     </div>
                 </div>

@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { profileCancel, profileEdit, profileEditBirthdate, profileEditChange, profileEditContactNumber, profileEditCountryCode, profileEditDay, profileEditEmail, profileEditFirstName, profileEditGender, profileEditHour, profileEditLastName, profileEditMinute, profileEditMonth, profileEditState, profileEditText, profileEditYear, profileSave, setTempStoreLocal } from '../../redux/actions/ProfileAction';
+import { profileCancel, profileEdit, profileEditBirthdate, profileEditContactNumber, profileEditCountryCode, profileEditDay, profileEditEmail, profileEditFirstName, profileEditGender, profileEditHour, profileEditLastName, profileEditMinute, profileEditMonth, profileEditState, profileEditText, profileEditYear, profileSave, setTempStoreLocal } from '../../redux/actions/ProfileAction';
 
 
 const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handleProfileMobile }) => {
@@ -21,14 +21,23 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
     
 
 
+    // ------------------------------- start of mobile view sidebar to appear ---------------------------------------------
     const profileOutermostContainer = document.getElementsByClassName('profile-outermost-container');
-
 
     useEffect(() => {
         dataFromProfileCallback(profileOutermostContainer[0]);
 
     }, [dataFromProfileCallback])
 
+    const ClickedMe = (e) => {
+        e.preventDefault();
+
+        const profileOutermostContainer = document.getElementsByClassName('profile-outermost-container');
+
+        profileOutermostContainer[0].classList.add('not-visible-profile');
+        dataFromSidebar.classList.add('sidebar-main-mobile');
+    }
+    // ------------------------------- end of mobile view sidebar to appear ---------------------------------------------
 
 
     //   THIS IS RESPONSIBLE FOR PRESERVING RESUME FORM FILL
@@ -291,14 +300,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
 
 
-    const ClickedMe = (e) => {
-        e.preventDefault();
-
-        const profileOutermostContainer = document.getElementsByClassName('profile-outermost-container');
-
-        profileOutermostContainer[0].classList.add('not-visible-profile');
-        dataFromSidebar.classList.add('sidebar-main-mobile');
-    }
+    
 
     const container = document.getElementsByClassName('container-js');
     const label = document.getElementsByClassName('profile-label');
@@ -344,7 +346,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                     inputList.add('profile-input');
                     inputProfile[i].setAttribute('disabled', true);
                     inputProfile[i].setAttribute('readonly', true);
-                    inputProfile[i].value = localStorage.getItem('birthdate');
+                    // inputProfile[i].value = localStorage.getItem('birthdate');
 
 
                 } else if (inputProfile[i].type === 'tel') {
@@ -355,13 +357,13 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                     inputList.remove('added2-contact-input');
                     inputProfile[i].setAttribute('disabled', true);
                     inputProfile[i].setAttribute('readonly', true);
-                    inputProfile[i].value = localStorage.getItem('contactNumber');
+                    // inputProfile[i].value = localStorage.getItem('contactNumber');
                 } else if (inputProfile[i].tagName === 'SELECT') {
                     inputList.remove('added-gender-select');
                     inputList.add('profile-gender-select');
                     inputProfile[i].setAttribute('disabled', true);
                     inputProfile[i].setAttribute('readonly', true);
-                    inputProfile[i].value = localStorage.getItem('gender');
+                    // inputProfile[i].value = localStorage.getItem('gender');
                 }
                 else {
                     inputList.remove('added-profile-input');
@@ -369,11 +371,11 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                     inputProfile[i].setAttribute('disabled', true);
                     inputProfile[i].setAttribute('readonly', true);
                     if (inputProfile[i].name === 'first_name') {
-                        inputProfile[i].value = localStorage.getItem('firstName');
+                        // inputProfile[i].value = localStorage.getItem('firstName');
                     } else if (inputProfile[i].name === 'email') {
-                        inputProfile[i].value = localStorage.getItem("email");
+                        // inputProfile[i].value = localStorage.getItem("email");
                     } else {
-                        inputProfile[i].value = localStorage.getItem('lastName');
+                        // inputProfile[i].value = localStorage.getItem('lastName');
                     }
                 }
 
@@ -467,6 +469,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
         // () => { setEdit(true) }
 
         data.editState = true
+        
         dispatch(profileCancel(data))
         debugger;
         // THIS NOT WORKING SO IN CALLING(edit===false)  in real in calling it should be(edit===true) inside if branch
@@ -487,8 +490,8 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
         // setEdit(true);
 
-        if (editNew === true || editNew === String(true)) {
-            // if (data.editState === true || data.editState === String(true)) {
+        // if (editNew === true || editNew === String(true)) {
+            if (data.editState === true || data.editState === String(true)) {
 
 
             
@@ -611,9 +614,11 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
         }
 
         localStorage.removeItem('tempStoreLocal');
-        // setTempStore({})
+        
 
-        calling();
+
+        // below was on before
+        // calling();
 
         handleProfileMobile();
     }
@@ -640,7 +645,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
         else {
         toast.success('profile data saved', {
             position: "bottom-center",
-            autoClose: 3000,
+            autoClose: 800,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -650,8 +655,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
             // onClose: () => { setEdit((edit) => !edit); calling() } 
 
             onClose: () => {
-                // callingVar => true
-                // const callingVar = !Boolean(edit)
+                
 
 
                 // below is correct
@@ -659,12 +663,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                 setEdit(callingVar);
 
 
-                // setEdit(prevEdit => !prevEdit);
-
-                if (callingVar === true || callingVar === String(true)) {
-                    // if(data.editState === true){
-
-
+                    if (data.editState === true || data.editState === String(true)) {                    
                     
                     for (var i = 0; i < container.length; i++) {
 
@@ -796,7 +795,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
                 
                 localStorage.removeItem('tempStoreLocal');
-                // setTempStore({})
+                
                 handleProfileMobile();
             }
 
@@ -805,7 +804,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
     }
         
         data.editState = true;
-
+        
         dispatch(profileSave(data));
         
     }
@@ -824,11 +823,12 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
         e.preventDefault();
         debugger;
         data.editState = false
+        
         dispatch(profileEdit(data))
 
         const newEdit = !edit;
         setEdit(newEdit)
-        // if (Boolean(newEdit) === false || edit === String(false)) {
+        
         if (Boolean(data.editState) === false || data.editState === String(false)) {
 
 
@@ -865,7 +865,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
 
                     inputProfile[i].classList.add('added-profile-input');
-                    // inputProfile[i].style.setProperty('text-align','center')
+                    
 
                     inputProfile[i].removeAttribute('disabled');
                     inputProfile[i].removeAttribute('readonly');
@@ -873,7 +873,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
 
 
-                    // setBirthdate(localStorage.getItem('birthdate'));
+
                 } else if (inputProfile[i].type === 'tel') {
                     const inputList = inputProfile[i].classList;
 
@@ -890,11 +890,10 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
 
 
-                    // setContactNumber(localStorage.getItem('contactNumber'));
-                    // setCountryCode(localStorage.getItem('countryCode'));
+                    
                 } else if (inputProfile[i].tagName === 'SELECT') {
 
-                    console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+                    
 
                     inputProfile[i].classList.remove('profile-gender-select');
                     inputProfile[i].classList.add('added-gender-select');
@@ -905,7 +904,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
 
 
-                    // setGender(localStorage.getItem('gender'));
+                    
                 } else {
 
                     inputProfile[i].style.setProperty('border', '');
@@ -922,19 +921,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                     inputProfile[i].removeAttribute('disabled');
                     inputProfile[i].removeAttribute('readonly');
 
-                    if (inputProfile[i].name === 'first_name') {
-
-
-
-                        // setFirstName(localStorage.getItem('firstName'));
-                    } else if (inputProfile[i].name === 'last_name') {
-
-
-                        // setLastName(localStorage.getItem('lastName'));
-                    } else {
-
-                        // setEmail(localStorage.getItem('email'));
-                    }
+                    
                 }
 
 
@@ -978,7 +965,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                 inputProfile2[0].removeAttribute('disabled');
                 inputProfile2[0].removeAttribute('readonly');
 
-                // setText(localStorage.getItem('text'));
+                
 
 
 
@@ -1007,16 +994,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
                         dateSelect[j].removeAttribute('disabled');
                         dateSelect[j].removeAttribute('readonly');
-                        // if (dateSelect[j].name === 'year') {
-
-                        //     setYear(localStorage.getItem('year'))
-                        // } else if (dateSelect[j].name === 'month') {
-
-                        //     setMonth(localStorage.getItem('month'))
-                        // } else {
-
-                        //     setDay(localStorage.getItem('day'))
-                        // }
+                        
 
                     }
                 }
@@ -1030,13 +1008,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                         timeSelect[k].removeAttribute('disabled');
                         timeSelect[k].removeAttribute('readonly');
 
-                        // if (timeSelect[k].name === 'hour') {
-
-                        //     setHour(localStorage.getItem('hour'))
-                        // } else {
-
-                        //     setMinute(localStorage.getItem('minute'))
-                        // }
+                        
                     }
                 }
 
@@ -1068,7 +1040,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                     <div className='profile-outermost-container3'>
 
                         <NavbarMobileCompo ClickedMe={ClickedMe} navTitle='My Profile' />
-                        {/* <NavbarMobileCompo /> */}
+                        
 
                         <div className='profile-wrapper'>
                             <form onSubmit={handleSubmit} >
@@ -1122,15 +1094,15 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
                                             <input disabled className='profile-input input-js' placeholder name='phone' type='tel' readonly
 
-                                                // value={((typeof edit === 'string') ? (edit === String(true)) : (Boolean(edit) === true)) ? `${data.countryCode} ${data.contactNumber}` : data.contactNumber.replace(/([a-zA-Z])/g, "")}
-                                                value={((typeof data.editState === 'string') ? (data.editState === String(true)) : (Boolean(data.editState) === true)) ? `${data.countryCode} ${data.contactNumber}` : data.contactNumber.replace(/([a-zA-Z])/g, "")}
+                                                value={((typeof edit === 'string') ? (edit === String(true)) : (Boolean(edit) === true)) ? `${data.countryCode} ${data.contactNumber}` : data.contactNumber.replace(/([a-zA-Z])/g, "")}
+                                                // value={((typeof data.editState === 'string') ? (data.editState === String(true)) : (Boolean(data.editState) === true)) ? `${data.countryCode} ${data.contactNumber}` : data.contactNumber.replace(/([a-zA-Z])/g, "")}
                                                 onChange={e => {
                                                     dispatch(profileEditContactNumber(e.target.value))
                                                     handleChangeSession(e);
                                                 }}></input>
 
-                                            {/* {((typeof edit === 'string') ? (edit === String(false)) : (Boolean(edit) === false)) ? ( */}
-                                            {((typeof data.editState === 'string') ? (data.editState === String(false)) : (Boolean(data.editState) === false)) ? (
+                                            {((typeof edit === 'string') ? (edit === String(false)) : (Boolean(edit) === false)) ? (
+                                            // {((typeof data.editState === 'string') ? (data.editState === String(false)) : (Boolean(data.editState) === false)) ? (
                                                 <div>
                                                     <input className='contact-inner-input' type='text' style={{ width: '52px' }} readonly disabled
                                                         value={data.countryCode ? data.countryCode : '+1'}></input>

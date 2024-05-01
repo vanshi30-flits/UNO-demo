@@ -1,10 +1,15 @@
 import { legacy_createStore as createStore, combineReducers, applyMiddleware } from 'redux';
 import profileReducer from './reducers/profileReducer';
 import { composeWithDevTools } from '@redux-devtools/extension';
+import ordersReducer from './reducers/ordersReducer';
+import headerReducer from './reducers/headerReducer';
 
 
 const mainReducer = combineReducers({
-    profile: profileReducer
+    profile: profileReducer,
+    orders: ordersReducer,
+    header: headerReducer
+    
 })
 
 debugger;
@@ -26,6 +31,12 @@ const commonData = {
         minute: localStorage.getItem('minute'),
         editState: Boolean(localStorage.getItem('editState')),
         tempStoreLocal: {}
+    },
+    orders:{
+        dataFromOrders:null
+    },
+    header:{
+        userName: "vanshi"
     }
 }
 

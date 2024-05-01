@@ -61,7 +61,17 @@
     border: 1px solid rgb(32, 2, 100);
     margin: 0 3px !important;
     padding: 0 !important;
+
+    font-weight: 400;
+    
+    
+    
+    /* color: rgba(0,0,0,0.87);
+    background-color: transparent; */
 }
+/* .pagination-nav-page-btn2:hover{
+    background-color: rgba(0,0,0,0.04);
+} */
 
 .pagination-nav-page-span {
     overflow: hidden;

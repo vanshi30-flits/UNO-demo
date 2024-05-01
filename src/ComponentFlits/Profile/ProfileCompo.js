@@ -4,14 +4,10 @@ import NavbarMobileCompo from '../Sidebar/NavbarMobileCompo'
 import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import { UseSelector, useSelector } from 'react-redux';
+
 
 
 const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileMobile }) => {
-
-// const data = useSelector((state)=>{
-//   console.log(state.profile);
-// })
 
   const [edit, setEdit] = useState(localStorage.getItem('editState'));
 
@@ -29,12 +25,6 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
     }
   }, [])
 
-  // THIS WORKS
-  // useEffect(() => {
-  //   localStorage.setItem('tempStoreLocal', JSON.stringify(tempStore));
-  // }, [tempStore])
-
-
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -50,22 +40,46 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
   const [countryCode, setCountryCode] = useState('+1');
   
   
+
+
+
+  // --------------------------- for mobile ---------------------------------------------------
   const profileOutermostContainer = document.getElementsByClassName('profile-outermost-container');
-  
-  
+    
   useEffect(()=>{
     dataFromProfileCallback(profileOutermostContainer[0]);
 
   },[dataFromProfileCallback])
 
+  const ClickedMe = (e) => {
+    e.preventDefault();
+
+    const profileOutermostContainer = document.getElementsByClassName('profile-outermost-container');
+
+    profileOutermostContainer[0].classList.add('not-visible-profile');
+    dataFromSidebar.classList.add('sidebar-main-mobile');
+  }
+  // --------------------------- for mobile ---------------------------------------------------
+
+
+
+
+
+  // for refresh while resuming data entry inside profile form 
+  // if((Boolean(edit) === false || edit === String(false)) && (localStorage.getItem('tempStoreLocal') !== '{}')){
+  //   console.log("full");
+  //   const handleRefreshWithTempStoreFull = e =>{
+  //     localStorage.removeItem('tempStoreLocal')
+  //     setTempStore({})
+  //   }
+  //   debugger;
+  //   window.addEventListener('beforeunload', handleRefreshWithTempStoreFull)
+  // }
+
+
+
+
   useEffect(() => {
-    // HERE IS CORRECT
-
-    // dataFromProfileCallback(profileOutermostContainer[0]);
-
-
-    // profileOutermostContainer[0].style.setProperty('height', `${profileOutermostContainer[0].clientHeight}px`);
-
     setFirstName(localStorage.getItem("firstName"));
     setLastName(localStorage.getItem("lastName"));
     setEmail(localStorage.getItem("email"));
@@ -84,24 +98,20 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 // Eg: change of first_name will not be holded so that user will not be able to resume form filling 
   }, [])
 
+
+
+
+
+
   useEffect(() => {
     localStorage.setItem('editState', edit);
-    // checkEditStateFalse();
-    // if (edit === String(false)) {
-    // edit = Boolean(edit);
-    debugger;
+  
     const savedLocalData = JSON.parse(localStorage.getItem('tempStoreLocal'));
     
     if (savedLocalData) {
       setTempStore(savedLocalData);
-    }
-    
-
-    debugger;
-    if (Boolean(edit) === false || edit === String(false)) {
-
-      
-
+    }        
+    if (Boolean(edit) === false || edit === String(false)) {    
       for (var i = 0; i < container.length; i++) {
 
         container[i].classList.remove('innermost-input-profile-container');
@@ -111,19 +121,8 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
         container[i].classList.add('added-profile-innermost-container');
 
         container[i].style.setProperty('width', '');
-
-
         label[i].style.setProperty('margin-bottom', '');
         label[i].classList.add('added-profile-label');
-
-
-
-        // console.log("container:", container[i]);
-        // console.log("label:", label[i]);
-        // console.log('input profile:', inputProfile[i]);
-
-
-
         if (inputProfile[i].name === 'birthdate') {
           inputProfile[i].type = 'date';
           inputProfile[i].style.setProperty('border', '');
@@ -132,43 +131,17 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
           inputProfile[i].style.setProperty('font-weight', '')
           inputProfile[i].style.setProperty('height', '');
           inputProfile[i].style.setProperty('padding', '');
-
-
-
-          inputProfile[i].classList.add('added-profile-input');
-          // inputProfile[i].style.setProperty('text-align','center')
-
+          inputProfile[i].classList.add('added-profile-input');          
           inputProfile[i].removeAttribute('disabled');
           inputProfile[i].removeAttribute('readonly');
-
-          // THIS WORKS
-          // if (tempStore.birthdate !== undefined && tempStore.birthdate !== '') {
-
-          //   inputProfile[i].value = tempStore.birthdate;    
-          // } else {
-
-          //   inputProfile[i].value = birthdate;
-          // }
-
-
-
           if (savedLocalData) {
             if (savedLocalData.birthdate) {
-              // if (savedLocalData.birthdate || tempStore === undefined || tempStore === null) {
-              // if ((tempStore.birthdate !== undefined && tempStore.birthdate !== '' && tempStore.birthdate) && (savedLocalData.birthdate)) {
-
-              // inputProfile[i].value = savedLocalData.birthdate;
-
-              // setTempStore(prevData => ({ ...prevData, birthdate: savedLocalData.birthdate }));
-              //   inputProfile[i].value = tempStore.birthdate;
-
               setBirthdate(savedLocalData.birthdate)
             }
           } else {
 
-            inputProfile[i].value = birthdate;
-          }
-          // inputProfile[i].value = tempStore.birthdate;
+            // inputProfile[i].value = birthdate;
+          }          
           
         } else if (inputProfile[i].type === 'tel') {
           const inputList = inputProfile[i].classList;
@@ -182,31 +155,11 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
           inputProfile[i].removeAttribute('disabled');
           inputProfile[i].removeAttribute('readonly');
-
-          // inputProfile[i].value = tempStore.phone;
-
-
-          // THIS WORKS
-          // if (tempStore.phone !== undefined && tempStore.phone !== '') {
-
-          //   inputProfile[i].value = tempStore.phone;
-          // } else {
-          //   inputProfile[i].value = contactNumber;
-          // }
-
-
-
-
+        
           if (savedLocalData) {
 
 
-            if (savedLocalData.phone) {
-              // if (savedLocalData.gender || tempStore === undefined || tempStore === null) {
-              // if ((tempStore.phone !== undefined && tempStore.phone !== '' && tempStore.phone) && (savedLocalData.phone)) {
-              // inputProfile[i].value = savedLocalData.phone;
-
-              // setTempStore(prevData => ({ ...prevData, phone: savedLocalData.phone }));
-              // inputProfile[i].value = tempStore.phone;
+            if (savedLocalData.phone) {              
               setContactNumber(savedLocalData.phone)
 
             } else if (savedLocalData.countryCode) {
@@ -231,32 +184,15 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
           inputProfile[i].classList.add('added-gender-select');
 
           inputProfile[i].removeAttribute('disabled');
-          inputProfile[i].removeAttribute('readonly');
-
-
-          // THIS WORKS
-          // if (tempStore.gender !== undefined && tempStore.gender !== '') {
-
-          //   inputProfile[i].value = tempStore.gender;
-          // } else {
-          //   inputProfile[i].value = gender;
-          // }
-
+          inputProfile[i].removeAttribute('readonly');        
 
 
           if (savedLocalData) {
-            if (savedLocalData.gender) {
-              // if (savedLocalData.gender || tempStore === undefined || tempStore === null) {
-              // if ((tempStore.gender !== undefined && tempStore.gender !== '' && tempStore.gender) && (savedLocalData.gender)) {
-              // inputProfile[i].value = savedLocalData.gender;
-
-              // setTempStore(prevData => ({ ...prevData, gender: savedLocalData.gender }));
-              // inputProfile[i].value = tempStore.gender;
-
+            if (savedLocalData.gender) {              
               setGender(savedLocalData.gender);
             }
           } else {
-            inputProfile[i].value = gender;
+            // inputProfile[i].value = gender;
           }
 
         } else {
@@ -274,29 +210,11 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
           inputProfile[i].removeAttribute('disabled');
           inputProfile[i].removeAttribute('readonly');
-          if (inputProfile[i].name === 'first_name') {
-
-
-            // THIS WORKS
-            // if (tempStore.first_name !== undefined && tempStore.first_name !== '') {
-            //   console.log("FIRSTNAME............................");
-            //   inputProfile[i].value = tempStore.first_name;
-            // } else {
-
-            //   inputProfile[i].value = firstName;
-            // }
-
-            // if (savedLocalData.first_name) {
+          if (inputProfile[i].name === 'first_name') {            
 
             if (savedLocalData) {
 
               if (savedLocalData.first_name) {
-                // if ((tempStore.first_name !== undefined && tempStore.first_name !== '' && tempStore.first_name) && (savedLocalData.first_name)) {
-                
-                // inputProfile[i].value = savedLocalData.first_name;
-
-                // setTempStore(prevData => ({ ...prevData, first_name: savedLocalData.first_name }));
-                // inputProfile[i].value = tempStore.first_name;
 
                 setFirstName(savedLocalData.first_name);
 
@@ -305,7 +223,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
             } else {
 
-              inputProfile[i].value = firstName;
+              // inputProfile[i].value = firstName;
 
 
             }
@@ -315,27 +233,9 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
           } else if (inputProfile[i].name === 'last_name') {
 
-            // THIS WORKS
-            // if (tempStore.last_name !== undefined && tempStore.last_name !== '') {
-
-            //   inputProfile[i].value = tempStore.last_name;
-            // } else {
-            // 
-            //   inputProfile[i].value = lastName;
-
-            // }
-
-
             if (savedLocalData) {
 
               if (savedLocalData.last_name) {
-                // if (savedLocalData.last_name || tempStore === undefined || tempStore === null) {
-                // if ((tempStore.last_name !== undefined && tempStore.last_name !== '' && tempStore.last_name) && (savedLocalData.last_name)) {
-
-                // inputProfile[i].value = savedLocalData.last_name;
-
-                // setTempStore(prevData => ({ ...prevData, last_name: savedLocalData.last_name }));
-                // inputProfile[i].value = tempStore.last_name;
 
                 setLastName(savedLocalData.last_name)
 
@@ -344,36 +244,17 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
             }
             else {
 
-              inputProfile[i].value = lastName;
+              // inputProfile[i].value = lastName;
 
             }
-          } else {
-            // THIS WORKS
-            // if (tempStore.email !== undefined && tempStore.email !== '') {
-
-            //   inputProfile[i].value = tempStore.email;
-            // } else {
-            //   // if (inputProfile[i] === undefined) {
-            //   inputProfile[i].value = email;
-
-            // }
-
-
-
+          } else {            
             if (savedLocalData) {
-              if (savedLocalData.email) {
-                // if (savedLocalData.email || tempStore === undefined || tempStore === null) {
-                // if ((tempStore.email !== undefined && tempStore.email !== '' && tempStore.email) && (savedLocalData.email)) {
-                // inputProfile[i].value = savedLocalData.email;
-
-                // setTempStore(prevData => ({ ...prevData, email: savedLocalData.email }));
-                // inputProfile[i].value = tempStore.email;
-
+              if (savedLocalData.email) {                
                 setEmail(savedLocalData.email)
               }
             } else {
 
-              inputProfile[i].value = email;
+              // inputProfile[i].value = email;
 
             }
           }
@@ -394,20 +275,11 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
         const containerList2 = container2[i].classList;
         const labelList2 = label2[i].classList;
         const inputList2 = inputProfile2[0].classList;
-
-        // console.log("container2", container2[i]);
-        // console.log("label2", label2[i]);
-        // console.log("inputList2", inputProfile2[0]);
-
-
-
-
         container2[i].style.setProperty('display', 'block');
         containerList2.remove('profile-innermost-container2');
 
 
-        labelList2.add('added-profile-label2');
-        // labelList2.remove('profile-label');
+        labelList2.add('added-profile-label2');        
         labelList2.remove('profile-label2');
 
 
@@ -432,20 +304,16 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
         }
 
 
-        if (inputProfile2[i + 3].type === 'file') {
+        // if (inputProfile2[i + 3].type === 'file') {
 
-          fileInput[0].classList.add('edit-version-added-file-input');
-          fileInput[0].classList.remove('file-input');
-          fileInput[0].classList.add('added-profile-input');
-
-
-          fileContainer[0].classList.add('edit-version-file-input-container')
-          fileContainer[0].classList.remove('file-input-container');
+        //   fileInput[0].classList.add('edit-version-added-file-input');
+        //   fileInput[0].classList.remove('file-input');
+        //   fileInput[0].classList.add('added-profile-input');
 
 
-          // const fileOuterContainer2 = document.getElementsByClassName('profile-outer-container2');
-          // fileOuterContainer2[i].style.setProperty('height', '100px');
-        }
+        //   fileContainer[0].classList.add('edit-version-file-input-container')
+        //   fileContainer[0].classList.remove('file-input-container');
+        // }
         if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i].classList.contains('date-select')) {
 
           debugger;
@@ -517,37 +385,18 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
               }
             }
           }
-        }
-        // else{
-        // inputProfile2[0].style.setProperty('border', '');
-        // inputProfile2[0].style.setProperty('border-color', '');
-        // inputProfile2[0].style.setProperty('font-weight', '');
-        // inputProfile2[0].style.setProperty('display', '');
-        // inputProfile2[0].style.setProperty('height', '');
-        // inputProfile2[0].style.setProperty('padding', '');
-        // inputList2.add('added-profile-input');
-        // }
-
+        }        
       }
     }
-    // handleProfileMobile();
-  }
-    // }
-    , [edit])
+    
+  }, [edit])
 
 
 
 
 
 
-  const ClickedMe = (e) => {
-    e.preventDefault();
-
-    const profileOutermostContainer = document.getElementsByClassName('profile-outermost-container');
-
-    profileOutermostContainer[0].classList.add('not-visible-profile');
-    dataFromSidebar.classList.add('sidebar-main-mobile');
-  }
+  
 
   const container = document.getElementsByClassName('container-js');
   const label = document.getElementsByClassName('profile-label');
@@ -749,7 +598,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
   //   }
 
   // }
-  debugger;
+  
   // THIS WAS ACTIVE BEFORE BELOW FUNC  
   // checkEditStateFalse();
 
@@ -846,20 +695,20 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
         inputProfile2[i].value = localStorage.getItem('text');
 
-        if (inputProfile2[i + 3].type === 'file') {
+        // if (inputProfile2[i + 3].type === 'file') {
 
 
 
-          fileInput[0].classList.remove('edit-version-added-file-input');
-          fileInput[0].classList.add('file-input');
-          fileInput[0].classList.remove('added-profile-input');
+        //   fileInput[0].classList.remove('edit-version-added-file-input');
+        //   fileInput[0].classList.add('file-input');
+        //   fileInput[0].classList.remove('added-profile-input');
 
 
-          fileContainer[0].classList.remove('edit-version-file-input-container')
-          fileContainer[0].classList.add('file-input-container');
+        //   fileContainer[0].classList.remove('edit-version-file-input-container')
+        //   fileContainer[0].classList.add('file-input-container');
 
 
-        }
+        // }
 
 
         if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i].classList.contains('date-select')) {
@@ -900,22 +749,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
   const handleCancleButton = (e) => {
     e.preventDefault();
 
-    // () => { setEdit(true) }
-
-    debugger;
-    // THIS NOT WORKING SO IN CALLING(edit===false)  in real in calling it should be(edit===true) inside if branch
-
-
-    //  setEdit((edit) => !edit);
-    // setEdit(prevEdit => !prevEdit);
-    
-
-    // var editNew = ((typeof edit === 'string') ? (edit === Str) : (Boolean(edit) ));
-
-    if (typeof edit === 'string') {
-      // var b = Boolean(edit);
-
-      // var editNew = !b
+    if (typeof edit === 'string') {      
       var editNew = true;
     } else {
       var editNew = !edit
@@ -923,13 +757,13 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
     }
     setEdit(editNew);
 
-    // setEdit(true);
+    
     
     if (editNew === true || editNew === String(true)) {
 
 
     
-      // container.length=6
+      
       for (var i = 0; i < container.length; i++) {
 
 
@@ -943,15 +777,9 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
           inputList.remove('added-profile-input');
           inputList.add('profile-input');
           inputProfile[i].setAttribute('disabled', true);
-          inputProfile[i].setAttribute('readonly', true);
-          // inputProfile[i].value = localStorage.getItem('birthdate');
+          inputProfile[i].setAttribute('readonly', true);          
 
-          setBirthdate(localStorage.getItem('birthdate'));
-          // inputProfile[i].removeAttribute('value');
-          // inputProfile[i].setAttribute('value',localStorage.getItem('birthdate'))
-
-          // console.log("birthdate",localStorage.getItem('birthdate'));
-          // inputProfile[i].value = toString(localStorage.getItem('birthdate'));
+          setBirthdate(localStorage.getItem('birthdate'));          
 
         } else if (inputProfile[i].type === 'tel') {
           debugger;
@@ -960,18 +788,14 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
           inputList.remove('added-contact-input');
           inputList.remove('added2-contact-input');
           inputProfile[i].setAttribute('disabled', true);
-          inputProfile[i].setAttribute('readonly', true);
-
-
-          // inputProfile[i].value = localStorage.getItem('contactNumber');
+          inputProfile[i].setAttribute('readonly', true);          
           setContactNumber(localStorage.getItem('contactNumber'));
           setCountryCode(localStorage.getItem('countryCode'));
         } else if (inputProfile[i].tagName === 'SELECT') {
           inputList.remove('added-gender-select');
           inputList.add('profile-gender-select');
           inputProfile[i].setAttribute('disabled', true);
-          inputProfile[i].setAttribute('readonly', true);
-          // inputProfile[i].value = localStorage.getItem('gender');
+          inputProfile[i].setAttribute('readonly', true);          
           setGender(localStorage.getItem('gender'));
         }
         else {
@@ -979,34 +803,11 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
           inputList.add('profile-input');
           inputProfile[i].setAttribute('disabled', true);
           inputProfile[i].setAttribute('readonly', true);
-          if (inputProfile[i].name === 'first_name') {
-            debugger;
-            
-            
-            // inputProfile[i].value = localStorage.getItem('firstName');
-            // inputProfile[i].value = 'hello';
-            // inputProfile[i].attributes[4].nodeValue ='hi';
-
-
-            // var res = inputProfile[i].match(/value=\".*\"/g);
-            // inputProfile[i].replace(res,'value=""');
-
-            
-
-            // inputProfile[i].value = `${newValue}`;
-            // inputProfile[i].value = localStorage.getItem('firstName');
-
-
-            setFirstName(localStorage.getItem('firstName'));
-            // inputProfile[i].setAttribute('value',newValue);
-            // firstNameID.removeAttribute('value');
-            // firstNameID.setAttribute('value',`${newValue}`);
-
-          } else if (inputProfile[i].name === 'email') {
-            // inputProfile[i].value = localStorage.getItem("email");
+          if (inputProfile[i].name === 'first_name') {            
+            setFirstName(localStorage.getItem('firstName'));            
+          } else if (inputProfile[i].name === 'email') {            
             setEmail(localStorage.getItem('email'));
-          } else {
-            // inputProfile[i].value = localStorage.getItem('lastName');
+          } else {            
             setLastName(localStorage.getItem('lastName'));
           }
         }
@@ -1033,33 +834,24 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
         container2[i].style.setProperty('display', '');
         containerList2.add('profile-innermost-container2');
-
         labelList2.add('profile-label');
         labelList2.remove('added-profile-label');
-
         inputList2.remove('added-profile-input');
         inputList2.add('profile-input');
         inputProfile2[0].setAttribute('disabled', true);
-        inputProfile2[0].setAttribute('readonly', true);
-
-        // inputProfile2[i].value = localStorage.getItem('text');
+        inputProfile2[0].setAttribute('readonly', true);        
         setText(localStorage.getItem('text'));
 
-        if (inputProfile2[i + 3].type === 'file') {
+        // if (inputProfile2[i + 3].type === 'file') {
 
 
 
-          fileInput[0].classList.remove('edit-version-added-file-input');
-          fileInput[0].classList.add('file-input');
-          fileInput[0].classList.remove('added-profile-input');
-
-
-          fileContainer[0].classList.remove('edit-version-file-input-container')
-          fileContainer[0].classList.add('file-input-container');
-
-          // const fileOuterContainer2 = document.getElementsByClassName('profile-outer-container2');
-          // fileOuterContainer2[i].style.setProperty('height', '40px');
-        }
+        //   fileInput[0].classList.remove('edit-version-added-file-input');
+        //   fileInput[0].classList.add('file-input');
+        //   fileInput[0].classList.remove('added-profile-input');
+        //   fileContainer[0].classList.remove('edit-version-file-input-container')
+        //   fileContainer[0].classList.add('file-input-container');        
+        // }
 
 
         if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i].classList.contains('date-select')) {
@@ -1110,7 +902,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
     localStorage.removeItem('tempStoreLocal');
     setTempStore({})
 
-    calling();
+    // calling();
 
     handleProfileMobile();
   }
@@ -1130,8 +922,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
-        // transition: Bounce,
+        theme: "dark",        
       });
       return
     }
@@ -1170,17 +961,13 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
         // onClose: () => { setEdit((edit) => !edit); calling() } 
 
         onClose: () => {
-          // callingVar => true
-          // const callingVar = !Boolean(edit)
+          
 
           const callingVar = true;
           setEdit(callingVar);
 
           if (callingVar === true || callingVar === String(true)) {
-
-
-            
-            // container.length=6
+                      
             for (var i = 0; i < container.length; i++) {
 
 
@@ -1261,20 +1048,20 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
               inputProfile2[i].value = localStorage.getItem('text');
 
-              if (inputProfile2[i + 3].type === 'file') {
+              // if (inputProfile2[i + 3].type === 'file') {
 
 
 
-                fileInput[0].classList.remove('edit-version-added-file-input');
-                fileInput[0].classList.add('file-input');
-                fileInput[0].classList.remove('added-profile-input');
+              //   fileInput[0].classList.remove('edit-version-added-file-input');
+              //   fileInput[0].classList.add('file-input');
+              //   fileInput[0].classList.remove('added-profile-input');
 
 
-                fileContainer[0].classList.remove('edit-version-file-input-container')
-                fileContainer[0].classList.add('file-input-container');
+              //   fileContainer[0].classList.remove('edit-version-file-input-container')
+              //   fileContainer[0].classList.add('file-input-container');
 
 
-              }
+              // }
 
 
               if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i].classList.contains('date-select')) {
@@ -1340,9 +1127,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
   const handleChangeSession = (e) => {
     e.preventDefault();
     const { value, session, name } = e.target;
-    setTempStore(prevData => ({ ...prevData, [name]: value }));
-
-    // localStorage.setItem('tempStoreLocal',JSON.stringify(tempStore));
+    setTempStore(prevData => ({ ...prevData, [name]: value }));    
   }
 
   useEffect(() => {
@@ -1351,28 +1136,11 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
   }, [tempStore])
 
 
-  // const handleEditNew = (e) => {
-  //   e.preventDefault();
-
-  //   // THIS WORKS
-  //   setEdit(false);
-
-
-
-  //   // checkEditStateFalse();
-  //   // handleProfileMobile();
-  // }
-
-
   const handleEditNew = (e) => {
     e.preventDefault();
-    debugger;
-
     const newEdit = !edit;
     setEdit(newEdit)
     if (Boolean(newEdit) === false || edit === String(false)) {
-
-
 
       for (var i = 0; i < container.length; i++) {
 
@@ -1383,15 +1151,8 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
         container[i].classList.add('added-profile-innermost-container');
 
         container[i].style.setProperty('width', '');
-
-
         label[i].style.setProperty('margin-bottom', '');
         label[i].classList.add('added-profile-label');
-
-
-
-
-
 
 
         if (inputProfile[i].name === 'birthdate') {
@@ -1402,18 +1163,9 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
           inputProfile[i].style.setProperty('font-weight', '')
           inputProfile[i].style.setProperty('height', '');
           inputProfile[i].style.setProperty('padding', '');
-
-
-
-          inputProfile[i].classList.add('added-profile-input');
-          // inputProfile[i].style.setProperty('text-align','center')
-
+          inputProfile[i].classList.add('added-profile-input');          
           inputProfile[i].removeAttribute('disabled');
           inputProfile[i].removeAttribute('readonly');
-
-
-          // const localBirthdate = localStorage.getItem('birthdate');
-          // inputProfile[i].value = localBirthdate 
 
           setBirthdate(localStorage.getItem('birthdate'));
         } else if (inputProfile[i].type === 'tel') {
@@ -1428,26 +1180,14 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
           inputProfile[i].removeAttribute('disabled');
           inputProfile[i].removeAttribute('readonly');
-
-
-          // const localContactNumber = localStorage.getItem('contactNumber');
-          // inputProfile[i].value = localContactNumber
-
           setContactNumber(localStorage.getItem('contactNumber'));
           setCountryCode(localStorage.getItem('countryCode'));
         } else if (inputProfile[i].tagName === 'SELECT') {
 
-
-
           inputProfile[i].classList.remove('profile-gender-select');
           inputProfile[i].classList.add('added-gender-select');
-
           inputProfile[i].removeAttribute('disabled');
           inputProfile[i].removeAttribute('readonly');
-
-
-          // const localGender = localStorage.getItem('gender');
-          // inputProfile[i].value = localGender
 
           setGender(localStorage.getItem('gender'));
         } else {
@@ -1467,19 +1207,10 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
           inputProfile[i].removeAttribute('readonly');
 
           if (inputProfile[i].name === 'first_name') {
-
-            // const localFirstName = localStorage.getItem('firstName');
-            // inputProfile[i].value = localFirstName 
-
             setFirstName(localStorage.getItem('firstName'));
-          } else if (inputProfile[i].name === 'last_name') {
-            // const localLastName = localStorage.getItem('lastName');
-            // inputProfile[i].value = localLastName 
-
+          } else if (inputProfile[i].name === 'last_name') {            
             setLastName(localStorage.getItem('lastName'));
-          } else {
-            // const localEmail = localStorage.getItem('email');
-            // inputProfile[i].value = localEmail 
+          } else {            
             setEmail(localStorage.getItem('email'));
           }
         }
@@ -1528,19 +1259,19 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
 
 
-        if (inputProfile2[i + 3].type === 'file') {
+        // if (inputProfile2[i + 3].type === 'file') {
 
-          fileInput[0].classList.add('edit-version-added-file-input');
-          fileInput[0].classList.remove('file-input');
-          fileInput[0].classList.add('added-profile-input');
-
-
-          fileContainer[0].classList.add('edit-version-file-input-container')
-          fileContainer[0].classList.remove('file-input-container');
+        //   fileInput[0].classList.add('edit-version-added-file-input');
+        //   fileInput[0].classList.remove('file-input');
+        //   fileInput[0].classList.add('added-profile-input');
 
 
+        //   fileContainer[0].classList.add('edit-version-file-input-container')
+        //   fileContainer[0].classList.remove('file-input-container');
 
-        }
+
+
+        // }
         if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i].classList.contains('date-select')) {
 
 
@@ -1613,17 +1344,10 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
         <div className='profile-outermost-container2'>
           <div className='profile-outermost-container3'>
 
-            <NavbarMobileCompo ClickedMe={ClickedMe} navTitle='My Profile' />
-            {/* <NavbarMobileCompo /> */}
+            <NavbarMobileCompo ClickedMe={ClickedMe} navTitle='My Profile' />            
 
             <div className='profile-wrapper'>
-              <form onSubmit={handleSubmit} >
-
-
-                {/* ------------------------------------------------------- */}
-
-
-
+              <form onSubmit={handleSubmit} >            
                 <div className='profile-outer-container'>
                   <div className='profile-inner-container second-inner-container'>
                     <div id='1' className='profile-innermost-container innermost-input-profile-container container-js'>
@@ -1637,7 +1361,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
                   </div>
                 </div>
-                {/* ------------------------------------------------------- */}
+                
 
                 <div className='profile-outer-container'>
                   <div className='profile-inner-container second-inner-container'>
@@ -1661,7 +1385,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
 
 
-                {/* ---------------------------------------------------------------------------------- */}
+                
                 <div className='profile-outer-container'>
                   <div className='profile-inner-container second-inner-container'>
                     <div className='profile-innermost-container innermost-input-profile-container container-js'>
@@ -1705,11 +1429,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
                     </div>
                   </div>
                 </div>
-
-                {/* ---------------------------------------------------------------------------------- */}
-
-
-                {/* ---------------------------------------------------------------------------------- */}
+                                
 
                 <div className='profile-outer-container'>
                   <div className='profile-inner-container second-inner-container'>
@@ -1725,8 +1445,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
                     </div>
                   </div>
-                </div>
-                {/* ---------------------------------------------------------------------------------- */}
+                </div>                
 
 
                 <div className='profile-outer-container'>
@@ -1880,81 +1599,29 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
                       ) : ('')}
                     </div>
                   </div>
-                </div>
-                {/* ------------------------- */}
-
-
-
-
-
-
-
-
-                {/* <div className='profile-outer-container2'>
-                  <div className='profile-inner-container2 second-inner-container2 profile-inner-container2 inner-container-file'>
-                    <div className='profile-innermost-container2 innermost-input-profile-container2 container2-js'>
-                      <label className='profile-label2 profile-label2-js'>File upload:</label>
-                      
-                      <div className='file-container file-input-container p'>
-                        <input type='file' className='file-input file-input-item input2-js file-js' readonly disabled></input>
-                        <span className='file-span'>Frame.png</span>
-                      </div>
-                      <input type='hidden' value></input>
-                      <a className='file-upload-anchor'><i class="fa-solid fa-upload"></i></a>
-                      {edit === false ? (
-                        <>
-                          <a className='delete-uploaded-file-anchor'><i class="fa-solid fa-trash"></i></a>
-
-                          <div className='edit-version-sub-text-container'>
-                            <div className='edit-version-sub-text-icon-container'><i class="fa-regular fa-message sub-text-add-icon"></i></div>
-                            <span className='edit-version-sub-text-span'>add File</span>
-                          </div>
-                        </>
-
-                      ) : ('')}
-                    </div>
-                  </div>
-                </div> */}
-
-                {/* ------------------------------------------------------- */}
-
-
-
-
+                </div>                            
 
                 <div>
                   <div className='profile-outer-container outer-container-btn'>
 
-                    {/* {edit === (true || String(true)) ? */}
+                    
                     {((typeof edit === 'string') ? (edit === String(true)) : Boolean(edit) === true) ?
                       (
-                        <div className='second-inner-container'>
-                          
-                          {/* <button className='profile-btn' onClick={() => setEdit(!edit)} type='button' name='edit'>Edit</button> */}
-
-                          {/* THIS */}
-                          {/* <button className='profile-btn' onClick={(e) => { e.preventDefault(); setEdit(false); handleProfileMobile() }} type='button' name='edit'>Edit</button> */}
-                          {/* <button className='profile-btn' onClick={(e) => { setEdit(false); handleProfileMobile(); }} type='button' name='edit'>Edit</button> */}
+                        <div className='second-inner-container'>                                                                            
                           <button className='profile-btn' onClick={handleEditNew} type='button' name='edit'>Edit</button>
 
                         </div>
                       ) : (
                         <div className='second-inner-container'>
-                          <button className='profile-btn-cancel' name='cancel' type='button' onClick={(e) => { handleCancleButton(e); }}>Cancle</button>
-                          {/* <button className='profile-btn' onClick={handleSaveBtnClick} name='save' type='button'>Save</button> */}
-                          {/* <button className='profile-btn' name='save' type='button'>Save</button> */}
+                          <button className='profile-btn-cancel' name='cancel' type='button' onClick={(e) => { handleCancleButton(e); }}>Cancle</button>                          
                           <input type='submit' value='Save' className='profile-btn'></input>
                         </div>
                       )}
 
 
                   </div>
-                </div>
-                {/* ------------------------------------------------------- */}
+                </div>                
               </form>
-
-
-
             </div>
           </div>
         </div>

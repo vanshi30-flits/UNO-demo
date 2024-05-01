@@ -26,11 +26,12 @@
     transition: all .3s;
 }
 
-.menu-item-active{
+.menu-item-active {
     background-color: var(--navigationHoverBGColor);
     border-left: 4px solid !important;
-    border-color:var(--navigationBGColor);
+    border-color: var(--navigationBGColor);
 }
+
 .menu-item:hover {
     background-color: var(--navigationHoverBGColor);
     border-left: 4px solid !important;
@@ -59,6 +60,37 @@
     position: relative;
 }
 
+.count-bg-color {
+    background-color: var(--navigationHoverBGColor);
+    border-radius: 25px;
+    color: var(--navigationTextColor) !important;
+    display: inline-flex;
+    font-weight: 800;
+    font-size: 13px;
+    height: 25px;
+    min-width: 25px;
+    margin-left: 10px;
+    padding: 0 5px;
+    position: relative;
+    transition: all .5s;
+    width: auto;
+}
+
+.count {
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+
+.menu-item:hover .count-bg-color{
+    background: var(--navigationBGColor);
+    color: var(--navigationTextColor) !important;
+}
+.menu-item-active .count-bg-color {
+    background: var(--navigationBGColor);
+    color: var(--navigationTextColor) !important;
+}
 
 /* -------------------- */
 
@@ -72,18 +104,18 @@
         width: 100% !important;
     }
 
-.sidebar-main-mobile{
-    opacity: 1;
-    left: 0 !important;
-    position: relative;
-}
+    .sidebar-main-mobile {
+        opacity: 1;
+        left: 0 !important;
+        position: relative;
+    }
 
     /* For back button click */
 
-.sidebar-main{
-    display: block;
-    float: none !important;
-    width: 100% !important;
+    .sidebar-main {
+        display: block;
+        float: none !important;
+        width: 100% !important;
 
-}
+    }
 }

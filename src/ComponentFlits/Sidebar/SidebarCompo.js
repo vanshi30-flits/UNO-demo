@@ -1,9 +1,14 @@
 import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import './sidebar.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-const SidebarCompo = ({ storePage, dataFromSidebarCallback, dataFromAddress, dataFromProfile, dataFromOrders, handleAddressMobile, handleOrdersMobile, handleProfileMobile, handleWishlistMobile, handleRecentlyViewedMobile, handleCreditsMobile, handleManageCreditsMobile, handleFriendsMobile, handlePasswordMobile }) => {
+const SidebarCompo = ({ storePage,totalDataFromOrdersState, totalDataFromWishlistState,dataFromSidebarCallback, handleAddressMobile, handleOrdersMobile, handleProfileMobile, handleWishlistMobile, handleRecentlyViewedMobile, handleCreditsMobile, handleManageCreditsMobile, handleFriendsMobile, handlePasswordMobile }) => {
   const sidebarMain = document.getElementsByClassName('sidebar-main');
+
+  const data = useSelector((state) => {
+    return state
+});
   // useEffect(() => {
   debugger;
   dataFromSidebarCallback(sidebarMain[0]);
@@ -41,9 +46,8 @@ const SidebarCompo = ({ storePage, dataFromSidebarCallback, dataFromAddress, dat
   useEffect(() => {
 
 
-    if (storePage.profile === true || storePage.profile === String(true)) {
-      
-      setActive(1)
+    if (storePage.profile === true || storePage.profile === String(true)) {      
+      setActive(1);
     } else if (storePage.address === true || storePage.address === String(true)) {
      setActive(2)
     } else if (storePage.orders === true || storePage.orders === String(true)) {
@@ -65,8 +69,7 @@ const SidebarCompo = ({ storePage, dataFromSidebarCallback, dataFromAddress, dat
   }, [storePage])
 
   const [active, setActive] = useState(()=>{
-    if (storePage.profile === true || storePage.profile === String(true)) {
-      
+    if (storePage.profile === true || storePage.profile === String(true)) {      
       return 1;
     } else if (storePage.address === true || storePage.address === String(true)) {
       return 2;
@@ -87,13 +90,14 @@ const SidebarCompo = ({ storePage, dataFromSidebarCallback, dataFromAddress, dat
     }
 
   }
-
   );
+  // const [active,setActive] = useState(1);
   const menuItem = document.getElementsByClassName('menu-item');
 
   const handleActive = (divNumber) => {
     setActive(divNumber);
   }
+
 
   // HERE IS HANDLEADDRESSMOBILE WORKING
   // const handleAddressMobile = (e) => {
@@ -146,6 +150,8 @@ const SidebarCompo = ({ storePage, dataFromSidebarCallback, dataFromAddress, dat
   //   sidebarMain[0].classList.remove('sidebar-main-mobile');
   // }
 
+
+
   return (
     <>
       {/* <div></div> */}
@@ -182,17 +188,26 @@ const SidebarCompo = ({ storePage, dataFromSidebarCallback, dataFromAddress, dat
 
               <span className='item-name'>my orders</span>
               <span className='sidebar-icon'><i className="fa-solid fa-cart-shopping"></i></span>
+              {/* {
+                totalDataFromOrdersState ? <span className='count-bg-color count'>{totalDataFromOrdersState}</span>:('')
+              } */}
+              {
+                data.orders.dataFromOrders ? <span className='count-bg-color count'>{data.orders.dataFromOrders}</span>:('')
+              }
             </Link>
             {/* </a> */}
           </div>
 
 
-          <div className={active === 4 ? 'menu-item-active' : 'menu-item'} onClick={() => { handleActive(4); handleWishlistMobile() }}>
+          <div className={active === 4 ? 'menu-item-active js' : 'menu-item js'} onClick={() => { handleActive(4); handleWishlistMobile() }}>
             {/* <a id='profile' className='profile-sidebar' exact='true' href='#/profile'> */}
             <Link to={'/wishlist'} className='profile-sidebar'>
 
               <span className='item-name'>my wishlist</span>
               <span className='sidebar-icon'><i className="fa-regular fa-heart"></i></span>
+              {
+                totalDataFromWishlistState ? <span className='count-bg-color count'>{totalDataFromWishlistState}</span>:('')
+              }
             </Link>
             {/* </a> */}
           </div>
