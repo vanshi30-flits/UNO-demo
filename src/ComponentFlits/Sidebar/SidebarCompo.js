@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import './sidebar.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const SidebarCompo = ({ storePage,totalDataFromOrdersState, totalDataFromWishlistState,dataFromSidebarCallback, handleAddressMobile, handleOrdersMobile, handleProfileMobile, handleWishlistMobile, handleRecentlyViewedMobile, handleCreditsMobile, handleManageCreditsMobile, handleFriendsMobile, handlePasswordMobile }) => {
@@ -10,12 +10,12 @@ const SidebarCompo = ({ storePage,totalDataFromOrdersState, totalDataFromWishlis
     return state
 });
   // useEffect(() => {
-  debugger;
+  
   dataFromSidebarCallback(sidebarMain[0]);
   // }, [])
   // let defaultActive;
 
-  // console.log("store form sidebad", storePage.profile)
+  // console.l  og("store form sidebad", storePage.profile)
 
   // useEffect(()=>{
 

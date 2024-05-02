@@ -159,22 +159,13 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                             }
                         }
                     } else {
-                        if (savedLocalData) {
-                            if (savedLocalData.email) {
-                                dispatch(profileEditEmail(savedLocalData.email))
-                            }
-                        }
+                        inputProfile[i].setAttribute('disabled', true);
+                        inputProfile[i].setAttribute('readonly', true);                        
                     }
                 }
 
 
             }
-
-
-
-
-
-
 
 
             for (var i = 0; i < container2.length; i++) {
@@ -223,7 +214,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                 }
                 if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i].classList.contains('date-select')) {
 
-                    debugger;
+                     
                     for (let j = 0; j < dateSelect.length; j++) {
                         const dateList = dateSelect[j].classList;
 
@@ -262,7 +253,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                                 dispatch(profileEditHour(savedLocalData.hour))
                             }
                             if (savedLocalData.minute) {
-                                debugger;
+                                 
 
                                 dispatch(profileEditMinute(savedLocalData.minute))
                             }
@@ -316,7 +307,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
         data.editState = true
 
         dispatch(profileCancel(data))
-        debugger;
+         
 
 
         if (typeof edit === 'string') {
@@ -339,7 +330,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                 const label_list = label[i].classList;
                 const inputList = inputProfile[i].classList;
                 if (inputProfile[i].type === 'date') {
-                    debugger;
+                     
                     inputProfile[i].type = 'text';
                     inputList.remove('added-profile-input');
                     inputList.add('profile-input');
@@ -348,7 +339,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
 
                 } else if (inputProfile[i].type === 'tel') {
-                    debugger;
+                     ;
                     inputProfile[i].style.setProperty('padding-left', '');
                     inputList.add('profile-input');
                     inputList.remove('added-contact-input');
@@ -508,7 +499,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                             const label_list = label[i].classList;
                             const inputList = inputProfile[i].classList;
                             if (inputProfile[i].type === 'date') {
-                                debugger;
+                                 
                                 inputProfile[i].type = 'text';
                                 inputList.remove('added-profile-input');
                                 inputList.add('profile-input');
@@ -518,7 +509,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
 
                             } else if (inputProfile[i].type === 'tel') {
-                                debugger;
+                                
                                 inputProfile[i].style.setProperty('padding-left', '');
                                 inputList.add('profile-input');
                                 inputList.remove('added-contact-input');
@@ -656,7 +647,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
     const handleEditNew = (e) => {
         e.preventDefault();
-        debugger;
+        
         data.editState = false
 
         dispatch(profileEdit(data))
@@ -753,9 +744,14 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
 
                     inputProfile[i].classList.add('added-profile-input');
 
+
+
                     inputProfile[i].removeAttribute('disabled');
                     inputProfile[i].removeAttribute('readonly');
-
+                    if (inputProfile[i].name === 'email') {
+                        inputProfile[i].setAttribute('disabled', true);
+                        inputProfile[i].setAttribute('readonly', true);
+                    }
 
                 }
 
@@ -913,10 +909,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                                     <div className='profile-inner-container second-inner-container'>
                                         <div className='profile-innermost-container innermost-input-profile-container container-js'>
                                             <label className='profile-label'>Email:</label>
-                                            <input disabled className='profile-input input-js' placeholder name='email' type='email' readonly value={data.email} onChange={e => {
-                                                dispatch(profileEditEmail(e.target.value))
-                                                handleChangeSession(e)
-                                            }}></input>
+                                            <input disabled className='profile-input input-js' placeholder name='email' type='email' readonly value={data.email}></input>
 
                                         </div>
                                     </div>
@@ -968,7 +961,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                                         <div className='profile-innermost-container innermost-input-profile-container container-js'>
                                             <label className='profile-label'>Birthdate: </label>
 
-                                            <input disabled className='profile-input input-js' placeholder name='birthdate' type='text' readonly
+                                            <input disabled className='profile-input input-js' max='9999-12-31' placeholder name='birthdate' type='text' readonly
                                                 value={data.birthdate} onChange={e => {
                                                     dispatch(profileEditBirthdate(e.target.value))
                                                     handleChangeSession(e)
@@ -1042,7 +1035,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                                             <div className='date-container p'>
                                                 <div className='date-year-container'>
                                                     <select disabled className='date-select profile-input-date-select input2-js' name='year' value={data.year} onChange={e => {
-                                                        
+
                                                         handleChangeSession(e)
                                                         dispatch(profileEditYear(e.target.value));
                                                     }}>
@@ -1058,7 +1051,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                                                 </div>
                                                 <div className='date-month-container marg-mon month' >
                                                     <select disabled className='date-select profile-input-date-select input2-js' name='month' value={data.month} onChange={e => {
-                                                        
+
                                                         dispatch(profileEditMonth(e.target.value));
                                                         handleChangeSession(e)
                                                     }} >
@@ -1151,7 +1144,7 @@ const ProfileCompoRedux = ({ dataFromSidebar, dataFromProfileCallback, handlePro
                                 <div>
                                     <div className='profile-outer-container outer-container-btn'>
 
-                                        
+
                                         {((typeof edit === 'string') ? (edit === String(true)) : Boolean(edit) === true) ?
                                             (
                                                 <div className='second-inner-container'>

@@ -27,7 +27,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('vanshiOriginal@gmail.com');  
   const [contactNumber, setContactNumber] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [year, setYear] = useState('');
@@ -38,18 +38,18 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
   const [gender, setGender] = useState('');
   const [text, setText] = useState('');
   const [countryCode, setCountryCode] = useState('+1');
-  
-  
+
+
 
 
 
   // --------------------------- for mobile ---------------------------------------------------
   const profileOutermostContainer = document.getElementsByClassName('profile-outermost-container');
-    
-  useEffect(()=>{
+
+  useEffect(() => {
     dataFromProfileCallback(profileOutermostContainer[0]);
 
-  },[dataFromProfileCallback])
+  }, [dataFromProfileCallback])
 
   const ClickedMe = (e) => {
     e.preventDefault();
@@ -72,7 +72,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
   //     localStorage.removeItem('tempStoreLocal')
   //     setTempStore({})
   //   }
-  //   debugger;
+  
   //   window.addEventListener('beforeunload', handleRefreshWithTempStoreFull)
   // }
 
@@ -81,8 +81,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
   useEffect(() => {
     setFirstName(localStorage.getItem("firstName"));
-    setLastName(localStorage.getItem("lastName"));
-    setEmail(localStorage.getItem("email"));
+    setLastName(localStorage.getItem("lastName"));    
     setGender(localStorage.getItem("gender"));
     setText(localStorage.getItem("text"));
     setYear(localStorage.getItem("year"));
@@ -104,13 +103,13 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
   useEffect(() => {
     localStorage.setItem('editState', edit);
-  
+
     const savedLocalData = JSON.parse(localStorage.getItem('tempStoreLocal'));
-    
+
     if (savedLocalData) {
       setTempStore(savedLocalData);
-    }        
-    if (Boolean(edit) === false || edit === String(false)) {    
+    }
+    if (Boolean(edit) === false || edit === String(false)) {
       for (var i = 0; i < container.length; i++) {
 
         container[i].classList.remove('innermost-input-profile-container');
@@ -130,7 +129,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
           inputProfile[i].style.setProperty('font-weight', '')
           inputProfile[i].style.setProperty('height', '');
           inputProfile[i].style.setProperty('padding', '');
-          inputProfile[i].classList.add('added-profile-input');          
+          inputProfile[i].classList.add('added-profile-input');
           inputProfile[i].removeAttribute('disabled');
           inputProfile[i].removeAttribute('readonly');
           if (savedLocalData) {
@@ -140,8 +139,8 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
           } else {
 
             inputProfile[i].value = birthdate;
-          }          
-          
+          }
+
         } else if (inputProfile[i].type === 'tel') {
           const inputList = inputProfile[i].classList;
 
@@ -154,11 +153,11 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
           inputProfile[i].removeAttribute('disabled');
           inputProfile[i].removeAttribute('readonly');
-        
+
           if (savedLocalData) {
 
 
-            if (savedLocalData.phone) {              
+            if (savedLocalData.phone) {
               setContactNumber(savedLocalData.phone)
 
             } else if (savedLocalData.countryCode) {
@@ -183,11 +182,11 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
           inputProfile[i].classList.add('added-gender-select');
 
           inputProfile[i].removeAttribute('disabled');
-          inputProfile[i].removeAttribute('readonly');        
+          inputProfile[i].removeAttribute('readonly');
 
 
           if (savedLocalData) {
-            if (savedLocalData.gender) {              
+            if (savedLocalData.gender) {
               setGender(savedLocalData.gender);
             }
           } else {
@@ -209,7 +208,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
           inputProfile[i].removeAttribute('disabled');
           inputProfile[i].removeAttribute('readonly');
-          if (inputProfile[i].name === 'first_name') {            
+          if (inputProfile[i].name === 'first_name') {
 
             if (savedLocalData) {
 
@@ -247,15 +246,9 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
             }
           } else {            
-            if (savedLocalData) {
-              if (savedLocalData.email) {                
-                setEmail(savedLocalData.email)
-              }
-            } else {
-
+              inputProfile[i].setAttribute('disabled', true);
+              inputProfile[i].setAttribute('readonly', true);
               inputProfile[i].value = email;
-
-            }
           }
         }
 
@@ -278,7 +271,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
         containerList2.remove('profile-innermost-container2');
 
 
-        labelList2.add('added-profile-label2');        
+        labelList2.add('added-profile-label2');
         labelList2.remove('profile-label2');
 
 
@@ -302,10 +295,10 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
           inputProfile2[0].value = text
         }
 
-        
+
         if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i].classList.contains('date-select')) {
 
-          debugger;
+          
           for (let j = 0; j < dateSelect.length; j++) {
             const dateList = dateSelect[j].classList;
 
@@ -318,14 +311,14 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
             if (savedLocalData) {
               if (savedLocalData.year) {
                 setYear(savedLocalData.year);
-              } 
+              }
               if (savedLocalData.month) {
+
                 
-                debugger;
                 setMonth(savedLocalData.month);
-              } 
-              if(savedLocalData.day){
-                debugger;
+              }
+              if (savedLocalData.day) {
+                
                 setDay(savedLocalData.day);
               }
             } else {
@@ -333,14 +326,13 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
               if (dateSelect[j].name === 'year') {
 
                 dateSelect[j].value = year
-              } 
+              }
               if (dateSelect[j].name === 'month') {
                 dateSelect[j].value = month
 
-              } 
-              
-              if (dateSelect[j].name === 'day')
-              {
+              }
+
+              if (dateSelect[j].name === 'day') {
                 dateSelect[j].value = day
 
               }
@@ -360,24 +352,24 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
             if (savedLocalData) {
               if (savedLocalData.hour) {
                 setHour(savedLocalData.hour);
-              } 
-              if(savedLocalData.minute){
-                debugger;
+              }
+              if (savedLocalData.minute) {
+                
                 setMinute(savedLocalData.minute);
               }
             } else {
               if (timeSelect[k].name === 'hour') {
                 timeSelect[k].value = hour
-              }  
+              }
               if (timeSelect[k].name === 'minute') {
                 timeSelect[k].value = minute
               }
             }
           }
-        }        
+        }
       }
     }
-    
+
   }, [edit])
 
 
@@ -385,7 +377,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
 
 
-  
+
 
   const container = document.getElementsByClassName('container-js');
   const label = document.getElementsByClassName('profile-label');
@@ -399,7 +391,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
   const dateSelect = document.getElementsByClassName('date-select');
   const timeSelect = document.getElementsByClassName('time-select');
-  
+
 
 
 
@@ -407,14 +399,14 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
 
 
-  
+
 
 
 
   const handleCancleButton = (e) => {
     e.preventDefault();
 
-    if (typeof edit === 'string') {      
+    if (typeof edit === 'string') {
       var editNew = true;
     } else {
       var editNew = !edit
@@ -422,13 +414,13 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
     }
     setEdit(editNew);
 
-    
-    
+
+
     if (editNew === true || editNew === String(true)) {
 
 
-    
-      
+
+
       for (var i = 0; i < container.length; i++) {
 
 
@@ -437,30 +429,30 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
         const label_list = label[i].classList;
         const inputList = inputProfile[i].classList;
         if (inputProfile[i].type === 'date') {
-          debugger;
+          
           inputProfile[i].type = 'text';
           inputList.remove('added-profile-input');
           inputList.add('profile-input');
           inputProfile[i].setAttribute('disabled', true);
-          inputProfile[i].setAttribute('readonly', true);          
+          inputProfile[i].setAttribute('readonly', true);
 
-          setBirthdate(localStorage.getItem('birthdate'));          
+          setBirthdate(localStorage.getItem('birthdate'));
 
         } else if (inputProfile[i].type === 'tel') {
-          debugger;
+          
           inputProfile[i].style.setProperty('padding-left', '');
           inputList.add('profile-input');
           inputList.remove('added-contact-input');
           inputList.remove('added2-contact-input');
           inputProfile[i].setAttribute('disabled', true);
-          inputProfile[i].setAttribute('readonly', true);          
+          inputProfile[i].setAttribute('readonly', true);
           setContactNumber(localStorage.getItem('contactNumber'));
           setCountryCode(localStorage.getItem('countryCode'));
         } else if (inputProfile[i].tagName === 'SELECT') {
           inputList.remove('added-gender-select');
           inputList.add('profile-gender-select');
           inputProfile[i].setAttribute('disabled', true);
-          inputProfile[i].setAttribute('readonly', true);          
+          inputProfile[i].setAttribute('readonly', true);
           setGender(localStorage.getItem('gender'));
         }
         else {
@@ -468,11 +460,9 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
           inputList.add('profile-input');
           inputProfile[i].setAttribute('disabled', true);
           inputProfile[i].setAttribute('readonly', true);
-          if (inputProfile[i].name === 'first_name') {            
-            setFirstName(localStorage.getItem('firstName'));            
-          } else if (inputProfile[i].name === 'email') {            
-            setEmail(localStorage.getItem('email'));
-          } else {            
+          if (inputProfile[i].name === 'first_name') {
+            setFirstName(localStorage.getItem('firstName'));
+          } else {
             setLastName(localStorage.getItem('lastName'));
           }
         }
@@ -504,10 +494,10 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
         inputList2.remove('added-profile-input');
         inputList2.add('profile-input');
         inputProfile2[0].setAttribute('disabled', true);
-        inputProfile2[0].setAttribute('readonly', true);        
+        inputProfile2[0].setAttribute('readonly', true);
         setText(localStorage.getItem('text'));
 
-        
+
 
 
         if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i].classList.contains('date-select')) {
@@ -578,14 +568,14 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",        
+        theme: "dark",
       });
       return
     }
-    
 
 
-    
+
+
     else {
       toast.success('profile data saved', {
         position: "bottom-center",
@@ -596,16 +586,16 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
         draggable: true,
         progress: undefined,
         theme: "dark",
-        
+
 
         onClose: () => {
-          
+
 
           const callingVar = true;
           setEdit(callingVar);
 
           if (callingVar === true || callingVar === String(true)) {
-                      
+
             for (var i = 0; i < container.length; i++) {
 
 
@@ -614,7 +604,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
               const label_list = label[i].classList;
               const inputList = inputProfile[i].classList;
               if (inputProfile[i].type === 'date') {
-                debugger;
+                
                 inputProfile[i].type = 'text';
                 inputList.remove('added-profile-input');
                 inputList.add('profile-input');
@@ -624,7 +614,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
 
               } else if (inputProfile[i].type === 'tel') {
-                debugger;
+                
                 inputProfile[i].style.setProperty('padding-left', '');
                 inputList.add('profile-input');
                 inputList.remove('added-contact-input');
@@ -722,7 +712,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
             }
           }
 
-          
+
           localStorage.removeItem('tempStoreLocal');
           setTempStore({})
           handleProfileMobile();
@@ -733,8 +723,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
     }
 
     localStorage.setItem("firstName", firstName);
-    localStorage.setItem("lastName", lastName);
-    localStorage.setItem("email", email);
+    localStorage.setItem("lastName", lastName);    
     localStorage.setItem("gender", gender);
     localStorage.setItem("text", text);
     localStorage.setItem("year", year);
@@ -750,8 +739,8 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
   const handleChangeSession = (e) => {
     e.preventDefault();
-    const { value, session, name } = e.target;
-    setTempStore(prevData => ({ ...prevData, [name]: value }));    
+    const { value, name } = e.target;
+    setTempStore(prevData => ({ ...prevData, [name]: value }));
   }
 
   useEffect(() => {
@@ -787,7 +776,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
           inputProfile[i].style.setProperty('font-weight', '')
           inputProfile[i].style.setProperty('height', '');
           inputProfile[i].style.setProperty('padding', '');
-          inputProfile[i].classList.add('added-profile-input');          
+          inputProfile[i].classList.add('added-profile-input');
           inputProfile[i].removeAttribute('disabled');
           inputProfile[i].removeAttribute('readonly');
 
@@ -832,10 +821,13 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
           if (inputProfile[i].name === 'first_name') {
             setFirstName(localStorage.getItem('firstName'));
-          } else if (inputProfile[i].name === 'last_name') {            
+          } else if (inputProfile[i].name === 'last_name') {
             setLastName(localStorage.getItem('lastName'));
-          } else {            
-            setEmail(localStorage.getItem('email'));
+          } else {
+            
+            inputProfile[i].setAttribute('disabled', true);
+            inputProfile[i].setAttribute('readonly', true);
+            
           }
         }
 
@@ -883,7 +875,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
 
 
-        
+
         if (inputProfile2[i].tagName === 'SELECT' && inputProfile2[i].classList.contains('date-select')) {
 
 
@@ -934,6 +926,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
     }
 
   }
+
   return (
     <>
       <ToastContainer
@@ -956,10 +949,10 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
         <div className='profile-outermost-container2'>
           <div className='profile-outermost-container3'>
 
-            <NavbarMobileCompo ClickedMe={ClickedMe} navTitle='My Profile' />            
+            <NavbarMobileCompo ClickedMe={ClickedMe} navTitle='My Profile' />
 
             <div className='profile-wrapper'>
-              <form onSubmit={handleSubmit} >            
+              <form onSubmit={handleSubmit} >
                 <div className='profile-outer-container'>
                   <div className='profile-inner-container second-inner-container'>
                     <div id='1' className='profile-innermost-container innermost-input-profile-container container-js'>
@@ -967,19 +960,19 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
                       <input disabled id='first_name' className='profile-input input-js' placeholder name='first_name' type='text' readonly value={firstName} onChange={e => {
                         setFirstName(e.target.value);
                         handleChangeSession(e);
-                      }} data-session='sessionFirstName'></input>
+                      }} ></input>
 
                     </div>
 
                   </div>
                 </div>
-                
+
 
                 <div className='profile-outer-container'>
                   <div className='profile-inner-container second-inner-container'>
                     <div className='profile-innermost-container innermost-input-profile-container container-js'>
                       <label className='profile-label'>Last Name:</label>
-                      <input disabled className='profile-input input-js' placeholder name='last_name' type='text' readonly value={lastName} onChange={e => { setLastName(e.target.value); handleChangeSession(e) }} data-session='sessionLastName'></input>
+                      <input disabled className='profile-input input-js' placeholder name='last_name' type='text' readonly value={lastName} onChange={e => { setLastName(e.target.value); handleChangeSession(e) }} ></input>
 
                     </div>
                   </div>
@@ -989,7 +982,8 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
                   <div className='profile-inner-container second-inner-container'>
                     <div className='profile-innermost-container innermost-input-profile-container container-js'>
                       <label className='profile-label'>Email:</label>
-                      <input disabled className='profile-input input-js' placeholder name='email' type='email' readonly value={email} onChange={e => { setEmail(e.target.value); handleChangeSession(e) }} data-session='sessionEmail'></input>
+                      <input disabled className='profile-input input-js' placeholder name='email' type='email' readonly value={email}></input>
+
 
                     </div>
                   </div>
@@ -997,7 +991,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
 
 
-                
+
                 <div className='profile-outer-container'>
                   <div className='profile-inner-container second-inner-container'>
                     <div className='profile-innermost-container innermost-input-profile-container container-js'>
@@ -1006,23 +1000,21 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
                       <input disabled className='profile-input input-js' placeholder name='phone' type='tel' readonly
 
                         value={((typeof edit === 'string') ? (edit === String(true)) : (Boolean(edit) === true)) ? `${countryCode} ${contactNumber}` : contactNumber.replace(/([a-zA-Z])/g, "")}
-                        onChange={e => { setContactNumber(e.target.value); handleChangeSession(e); }}
-                        data-session='sessionContactNumber'
-                      ></input>
+                        onChange={e => { setContactNumber(e.target.value); handleChangeSession(e); }}></input>
 
                       {((typeof edit === 'string') ? (edit === String(false)) : (Boolean(edit) === false)) ? (
                         <div>
                           <input className='contact-inner-input' type='text' style={{ width: '52px' }} readonly disabled
-                            // value='+1'
+
                             value={countryCode ? countryCode : '+1'}
 
-                            data-session='sessionContactNumber'
+                            
                           ></input>
 
                           <div className='country-select-dropdown'>
                             <span className='country-select-flag' style={{ backgrouundPosition: '0px -50px' }}></span>
                             <div className='country-select-dowm-arrow-container'>
-                              <select className='select-option-of-country-select' value={countryCode ? countryCode : '+1'} onChange={e => { setCountryCode(e.target.value); handleChangeSession(e) }} name='countryCode' data-session='sessionCountryCode'>
+                              <select className='select-option-of-country-select' value={countryCode ? countryCode : '+1'} onChange={e => { setCountryCode(e.target.value); handleChangeSession(e) }} name='countryCode'>
 
                                 <option >+1</option>
                                 <option >+91</option>
@@ -1041,7 +1033,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
                     </div>
                   </div>
                 </div>
-                                
+
 
                 <div className='profile-outer-container'>
                   <div className='profile-inner-container second-inner-container'>
@@ -1050,14 +1042,14 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
                       <input disabled className='profile-input input-js' placeholder name='birthdate' type='text' readonly
                         value={birthdate} onChange={e => { setBirthdate(e.target.value); handleChangeSession(e) }}
-                        data-session='sessionBirthdate'
+                        max='9999-12-31'                        
                       ></input>
 
 
 
                     </div>
                   </div>
-                </div>                
+                </div>
 
 
                 <div className='profile-outer-container'>
@@ -1075,8 +1067,8 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
                           </select>
                         ) : (
                           <div style={{ width: '100%' }}>
-                            <select disabled name='gender' id='select-gender' readonly className='profile-gender-select input-js' value={gender} onChange={e => { setGender(e.target.value); handleChangeSession(e) }} data-session='sessionGender'>
-                              
+                            <select disabled name='gender' id='select-gender' readonly className='profile-gender-select input-js' value={gender} onChange={e => { setGender(e.target.value); handleChangeSession(e) }}>
+
                               <option className='profile-gender-option' ></option>
                               <option value='male'>Male</option>
                               <option value='female'>Female</option>
@@ -1097,7 +1089,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
                   <div className='profile-inner-container2 second-inner-container2 profile-inner-container2'>
                     <div className='profile-innermost-container2 innermost-input-profile-container2 container2-js'>
                       <label className='profile-label2 profile-label2-js'>Text: </label>
-                      <input disabled className='profile-input input2-js' placeholder name='text' type='text' readonly value={text.replace(/\s|[0-9]/g, '')} onChange={e => { setText(e.target.value); handleChangeSession(e) }} data-session='sessionText'></input>
+                      <input disabled className='profile-input input2-js' placeholder name='text' type='text' readonly value={text.replace(/\s|[0-9]/g, '')} onChange={e => { setText(e.target.value); handleChangeSession(e) }}></input>
 
 
                       {((typeof edit === 'string') ? (edit === String(false)) : (Boolean(edit) === false)) ? (
@@ -1117,7 +1109,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
                       <div className='date-container p'>
                         <div className='date-year-container'>
-                          <select disabled className='date-select profile-input-date-select input2-js' name='year' value={year} onChange={e => { setYear(e.target.value); handleChangeSession(e) }} data-session='sessionYear'>
+                          <select disabled className='date-select profile-input-date-select input2-js' name='year' value={year} onChange={e => { setYear(e.target.value); handleChangeSession(e) }} >
 
                             <option>1989</option>
                             <option>2000</option>
@@ -1130,7 +1122,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
                           ) : ('')}
                         </div>
                         <div className='date-month-container marg-mon month' >
-                          <select disabled className='date-select profile-input-date-select input2-js' name='month' value={month} onChange={e => { setMonth(e.target.value); handleChangeSession(e) }} data-session='sessionMonth'>
+                          <select disabled className='date-select profile-input-date-select input2-js' name='month' value={month} onChange={e => { setMonth(e.target.value); handleChangeSession(e) }}>
 
                             <option>02</option>
                             <option>03</option>
@@ -1143,7 +1135,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
                           ) : ('')}
                         </div>
                         <div className='date-day-container day'>
-                          <select disabled className='date-select profile-input-date-select input2-js' name='day' value={day} onChange={e => { setDay(e.target.value); handleChangeSession(e) }} data-session='sessionDay'>
+                          <select disabled className='date-select profile-input-date-select input2-js' name='day' value={day} onChange={e => { setDay(e.target.value); handleChangeSession(e) }}>
 
                             <option >10</option>
                             <option >11</option>
@@ -1178,7 +1170,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
 
                       <div className='time-container p'>
                         <div className='time-hour-container hour'>
-                          <select disabled className='time-select profile-input-time-select input2-js' name='hour' value={hour} onChange={e => { setHour(e.target.value); handleChangeSession(e) }} data-session='sessionHour'>
+                          <select disabled className='time-select profile-input-time-select input2-js' name='hour' value={hour} onChange={e => { setHour(e.target.value); handleChangeSession(e) }} >
                             <option>03</option>
                             <option>04</option>
                             <option>06</option>
@@ -1190,7 +1182,7 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
                           ) : ('')}
                         </div>
                         <div className='time-minute-container minute marg-min-container'>
-                          <select disabled className='time-select profile-input-time-select input2-js' name='minute' value={minute} onChange={e => { setMinute(e.target.value); handleChangeSession(e) }} data-session='sessionMinute'>
+                          <select disabled className='time-select profile-input-time-select input2-js' name='minute' value={minute} onChange={e => { setMinute(e.target.value); handleChangeSession(e) }} >
 
                             <option>40</option>
                             <option>10</option>
@@ -1211,28 +1203,28 @@ const ProfileCompo = ({ dataFromSidebar, dataFromProfileCallback, handleProfileM
                       ) : ('')}
                     </div>
                   </div>
-                </div>                            
+                </div>
 
                 <div>
                   <div className='profile-outer-container outer-container-btn'>
 
-                    
+
                     {((typeof edit === 'string') ? (edit === String(true)) : Boolean(edit) === true) ?
                       (
-                        <div className='second-inner-container'>                                                                            
+                        <div className='second-inner-container'>
                           <button className='profile-btn' onClick={handleEditNew} type='button' name='edit'>Edit</button>
 
                         </div>
                       ) : (
                         <div className='second-inner-container'>
-                          <button className='profile-btn-cancel' name='cancel' type='button' onClick={(e) => { handleCancleButton(e); }}>Cancle</button>                          
+                          <button className='profile-btn-cancel' name='cancel' type='button' onClick={(e) => { handleCancleButton(e); }}>Cancle</button>
                           <input type='submit' value='Save' className='profile-btn'></input>
                         </div>
                       )}
 
 
                   </div>
-                </div>                
+                </div>
               </form>
             </div>
           </div>

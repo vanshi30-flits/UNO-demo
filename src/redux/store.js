@@ -12,13 +12,13 @@ const mainReducer = combineReducers({
     
 })
 
-debugger;
+
 const commonData = {
 
     profile: {
         firstName: localStorage.getItem('firstName'),
-        lastName: localStorage.getItem('lastName'),
-        email: localStorage.getItem('email'),
+        lastName: localStorage.getItem('lastName'),        
+        email: 'vanshi@gmail.com',
         contactNumber: localStorage.getItem('contactNumber'),
         countryCode: localStorage.getItem('countryCode'),
         birthdate: localStorage.getItem('birthdate'),

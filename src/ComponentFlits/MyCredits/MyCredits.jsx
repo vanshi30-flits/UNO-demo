@@ -158,7 +158,12 @@ const MyCredits = ({dataFromSidebar,dataFromCreditsCallback}) => {
                                     </ul>
                                 </div>
                             </div>
+
+                            {
+                            totalPages > 1 ?(
                             <Pagination totalData={totalData} currentPage={currentPage} dataPerPage={dataPerPage} handlePageNumberClick={handlePageNumberClick} handleRightPageShiftBtn={handleRightPageShiftBtn} handleLeftPageShiftBtn={handleLeftPageShiftBtn}/>
+                            ):('')
+                            }
                         </div>
                     </div>
                 </div>

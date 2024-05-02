@@ -20,7 +20,7 @@ import { Provider, useDispatch } from 'react-redux';
 import ProfileCompoRedux from './ComponentFlits/Profile/ProfileCompoRedux';
 
 function App() {
-  debugger;
+  
   const parser = new DOMParser();
   const localHTML = localStorage.getItem('addressOutermostContainerLocal')
   const parseHTML = parser.parseFromString(localHTML, 'text/html');
@@ -88,7 +88,7 @@ function App() {
   useEffect(() => {
 
 
-    debugger;
+    
     dataFromAddressCallback();
 
     dataFromOrdersCallback();
@@ -179,7 +179,7 @@ function App() {
   //     }, 3000)
   //   })
   // }
-  debugger;
+  
   //   const dataFromAddressCallback = (data) => {
   //     dataFromAddressRef.current = data;
 
@@ -257,7 +257,7 @@ function App() {
 
 
 
-    debugger;
+    
     if (dataFromProfile !== undefined) {
       dataFromProfile.classList.remove('not-visible-profile');
       const clientHeight = `${dataFromProfile.clientHeight}px`;
@@ -281,7 +281,7 @@ function App() {
     // dataFromSidebar.style.setProperty('height',((`${dataFromAddress.clientHeight}px`) ? (`${dataFromAddress.clientHeight}px`) : ('476px')));
 
     // THIS
-    debugger;
+    
 
 
     setStorePage({ ...storePage, address: true, profile: false, orders: false, wishlist: false, viewed: false, credits: false, manageCredits: false, friends: false, password: false });
@@ -528,7 +528,7 @@ function App() {
                   <Route exact path='/managecredits' element={<ManageCredits dataFromSidebar={dataFromSidebar} dataFromManageCreditsCallback={dataFromManageCreditsCallback} />}> </Route>
                   <Route exact path='/referfriends' element={<ReferFriends dataFromSidebar={dataFromSidebar} dataFromFriendsCallback={dataFromFriendsCallback} />}> </Route>
                   <Route exact path='/password' element={<ChangePasswordComp dataFromSidebar={dataFromSidebar} dataFromPasswordCallback={dataFromPasswordCallback} />}> </Route>
-                  {/* <PrivateRoute exact path='/profile'> </PrivateRoute> */}
+                  
                 </Routes>
               </div>
             </div>

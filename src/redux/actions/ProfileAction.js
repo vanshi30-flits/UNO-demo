@@ -35,13 +35,7 @@ export const profileEditLastName = (data) => {
         payload: data
     }
 }
-export const profileEditEmail = (data) => {
 
-    return {
-        type: 'EDIT_PROFILE_EMAIL',
-        payload: data
-    }
-}
 export const profileEditContactNumber = (data) => {
 
     return {

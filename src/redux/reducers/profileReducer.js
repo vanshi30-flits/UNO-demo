@@ -5,12 +5,11 @@ const profileReducer = (state = '', action) => {
 
             const { firstName, lastName, email, birthdate, gender, contactNumber, countryCode, text, year, month, day, hour, minute, editState } = action.payload;
             localStorage.setItem('firstName', firstName);
-            localStorage.setItem('lastName', lastName);
-            localStorage.setItem('email', email);
+            localStorage.setItem('lastName', lastName);            
             localStorage.setItem('birthdate', birthdate);
             localStorage.setItem('gender', gender);
             localStorage.setItem('contactNumber', contactNumber);
-            localStorage.setItem('countrycode', countryCode);
+            localStorage.setItem('countryCode', countryCode);
             localStorage.setItem('text', text);
             localStorage.setItem('year', year);
             localStorage.setItem('month', month);
@@ -29,9 +28,6 @@ const profileReducer = (state = '', action) => {
         case 'EDIT_PROFILE_LASTNAME':
 
             return { ...state, lastName: action.payload }
-        case 'EDIT_PROFILE_EMAIL':
-
-            return { ...state, email: action.payload }
         case 'EDIT_PROFILE_CONTACTNUMBER':
 
             return { ...state, contactNumber: action.payload }
@@ -87,8 +83,8 @@ const profileReducer = (state = '', action) => {
             const updatedStateEdit = {
                 ...state,
                 firstName: localStorage.getItem('firstName'),
-                lastName: localStorage.getItem('lastName'),
-                email: localStorage.getItem('email'),
+                lastName: localStorage.getItem('lastName'),                
+                email: action.payload.email,
                 birthdate: localStorage.getItem('birthdate'),
                 gender: localStorage.getItem('gender'),
                 contactNumber: localStorage.getItem('contactNumber'),
@@ -98,9 +94,7 @@ const profileReducer = (state = '', action) => {
                 month: localStorage.getItem('month'),
                 day: localStorage.getItem('day'),
                 hour: localStorage.getItem('hour'),
-                minute: localStorage.getItem('minute'),
-                // editState: false,
-                // editState: localStorage.setItem('editState',action.payload.editState)                
+                minute: localStorage.getItem('minute'),                             
                 editState: action.payload.editState
 
             }
@@ -113,8 +107,8 @@ const profileReducer = (state = '', action) => {
             const updatedStateCancel = {
                 ...state,
                 firstName: localStorage.getItem('firstName'),
-                lastName: localStorage.getItem('lastName'),
-                email: localStorage.getItem('email'),
+                lastName: localStorage.getItem('lastName'),                
+                email: action.payload.email,
                 birthdate: localStorage.getItem('birthdate'),
                 gender: localStorage.getItem('gender'),
                 contactNumber: localStorage.getItem('contactNumber'),
@@ -125,9 +119,7 @@ const profileReducer = (state = '', action) => {
                 day: localStorage.getItem('day'),
                 hour: localStorage.getItem('hour'),
                 minute: localStorage.getItem('minute'),
-                tempStoreLocal: {},
-                // editState: true                
-                // editState: localStorage.setItem('editState',action.payload.editState)
+                tempStoreLocal: {},                
                 editState: action.payload.editState
             }
             return updatedStateCancel
